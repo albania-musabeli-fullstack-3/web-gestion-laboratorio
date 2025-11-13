@@ -1,0 +1,48 @@
+<div class="d-flex vh-100 m-0 p-0">
+
+  <!-- Mitad Izquierda -->
+  <div class="col-12 col-md-6 bg-white d-flex align-items-center justify-content-center p-4">
+    <form [formGroup]="formLogin" (ngSubmit)="login()" class="w-100" style="max-width: 420px;">
+      <div class="text-center mb-5">
+        <h2 class="text-dark fw-bold">Iniciar Sesión</h2>
+      </div>
+
+      <div class="row g-3">
+        <div class="col-12">
+          <mat-form-field class="w-100" appearance="outline">
+            <mat-label>Correo</mat-label>
+            <input formControlName="email" matInput placeholder="usuario@ejemplo.com" type="email" required>
+          </mat-form-field>
+        </div>
+
+        <div class="col-12">
+          <mat-form-field class="w-100" appearance="outline">
+            <mat-label>Contraseña</mat-label>
+            <input formControlName="password" matInput type="password"  required>
+          </mat-form-field>
+        </div>
+
+        <div class="col-12">
+          <div class="d-grid">
+            <button type="submit" class="btn btn-primary btn-lg fw-bold">
+              Iniciar Sesión
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <!-- Mitad Derecha -->
+  <div class="col-12 col-md-6 bg-primary d-flex align-items-center justify-content-center p-5 d-none d-md-flex">
+    <div style="max-width: 500px; width: 100%;">
+      <h1 class="display-5 fw-bold text-white">
+        Bienvenido a Gestión Lab
+      </h1>
+      <p class="lead text-white mt-4" style="font-size: 1.3rem;">
+        El sistema más moderno y completo de Chile en resultados de laboratorio
+      </p>
+    </div>
+  </div>
+
+</div>
