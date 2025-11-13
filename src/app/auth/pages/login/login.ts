@@ -4,6 +4,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { AuthApi } from '../../services/auth-api';
 import { Router } from '@angular/router';
+import { AlertService } from '../../../shared/services/alert-service';
 
 @Component({
   selector: 'app-login',
@@ -21,6 +22,7 @@ export class Login {
   private fb = inject(FormBuilder);
   private authService = inject(AuthApi);
   private router = inject(Router);
+  private alertSrv = inject(AlertService);
 
 
   // formulario login
@@ -45,6 +47,7 @@ export class Login {
       },
       error: (error) => {
         console.log(error);
+        this.alertSrv.handlerAlerta('Advertencia', 'Correo y/o contraseña incorrectos. Inténtelo nuevamente', 'warning')
 
       }
     })
