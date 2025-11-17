@@ -1,0 +1,49 @@
+<aside id="sidebar" class="expand d-none d-md-block">
+
+    <!-- LOGO - TOGGLE BUTTON -->
+    <!-- <div class="d-flex align-item-center">
+        <button (click)="toggleSidebar()" class="toggle_btn" type="button"> <i class="lni lni-angular"></i>
+        </button>
+        <div class="sidebar_logo">
+            <a routerLink="home">Advance</a>
+        </div>
+    </div> -->
+
+    <ul class="sidebar_nav">
+
+
+        @for (item of menuItems(); track $index) {
+        <li class="sidebar_item">
+            @if (item.submenu) {
+            <a class="sidebar_link has_dropdown collapsed d-flex align-items-center" href="#" data-bs-toggle="collapse"
+                [attr.data-bs-target]="'#' + item.label.toLowerCase()" aria-expanded="false">
+                <i [ngClass]="item.icon"></i>
+
+                <span>{{item.label}} </span>
+                <span class="sidebar_item_count">{{item.submenu.length}}</span>
+
+            </a>
+            <ul [id]="item.label.toLowerCase()" class="sidebar_dropdown list-unstyled collapse"
+                data-bs-parent="#sidebar">
+                @for (subitem of item.submenu; track $index) {
+                <li class="sidebar_item">
+                    <a routerLinkActive="active" [routerLink]="subitem.link" class="sidebar_link">
+                        <div class="sublink_label">{{subitem.label}}</div>
+                    </a>
+                </li>
+                }
+
+            </ul>
+            }
+            @else {
+            <a class="sidebar_link" [routerLink]="item.link"><i [ngClass]="item.icon"></i>
+                <span>{{item.label}}</span></a>
+            }
+        </li>
+        }
+    </ul>
+<!-- 
+    <div class="sidebar_footer mt-auto p-3 border-top">
+       
+    </div> -->
+</aside>
