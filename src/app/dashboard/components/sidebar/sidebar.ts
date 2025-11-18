@@ -1,5 +1,5 @@
 import { Component, computed, ElementRef, inject } from '@angular/core';
-import { SidebarMenu } from '../../services/sidebar-menu';
+import { SidebarMenu } from '../../services/sidebar-menu/sidebar-menu';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 

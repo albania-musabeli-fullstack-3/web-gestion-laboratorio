@@ -6,6 +6,8 @@ export interface DashboarItem {
 }
 
 export interface Submenu {
-    label: string,
-    link: string,
+    label: string;
+    link: string;
+    codPrograma: string;
+    nombrePrograma: string;
 }

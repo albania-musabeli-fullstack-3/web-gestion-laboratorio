@@ -1,0 +1,42 @@
+<div class="dashboard-container">
+
+    <!-- HEADER SUPERIOR -->
+    <header class="dashboard-header">
+        <div class="left-side">
+            <div class="greeting">{{ saludo }}</div>
+            <h2 class="user-title">{{ nombre() }}</h2>
+        </div>
+
+        <div class="right-side">
+            <div class="time">{{ horaActual }}</div>
+            <div class="date">{{ fechaActual }}</div>
+        </div>
+    </header>
+
+    <!-- BARRA DE BÚSQUEDA -->
+    <!--   <div class="search-container">
+        <input type="text" placeholder="Buscar programa" class="search-input" />
+    </div> -->
+</div>
+
+<!-- SECCIÓN SISTEMAS -->
+<section class="systems-section">
+    <h2 class="section-title mt-3">SISTEMAS</h2>
+
+    <div class="row">
+        @for (programa of programas(); track $index) {
+
+        <div class="col-3">
+            <mat-card (click)="navegarCards(programa.link)" appearance="outlined" class="shadow-sm border-2">
+                <mat-card-header>
+                    <mat-card-title class="text-primary fw-semibold">{{ programa.codPrograma }}</mat-card-title>
+                    <mat-card-subtitle class="my-2">{{ programa.nombrePrograma }}</mat-card-subtitle>
+                </mat-card-header>
+            </mat-card>
+
+        </div>
+        }
+    </div>
+
+
+</section>

@@ -12,7 +12,26 @@ export const routes: Routes = [
     {
         path: '',
         component: DashboardLayout,
-        canActivate: [authGuard]
+        canActivate: [authGuard],
+        children: [
+            {
+                path: 'home',
+                loadComponent: () => import('./dashboard/pages/home/home')
+            },
+            {
+                path: 'usuarios',
+                loadComponent: () => import('./dashboard/pages/usuarios/usuarios')
+            },
+            {
+                path: 'resultados',
+                loadComponent: () => import('./dashboard/pages/resultados/resultados')
+            },
+            {
+                path: '',
+                redirectTo: 'home',
+                pathMatch: 'full'
+            }
+        ]
     },
     {
         path: '',

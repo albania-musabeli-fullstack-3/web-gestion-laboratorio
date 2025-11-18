@@ -1,0 +1,25 @@
+mat-card {
+  // 1. Transición suave para que el efecto no sea brusco
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer; // Cambia el cursor a "manito" para indicar que es clickable
+
+  // Aseguramos que el borde base sea visible para la transición
+  border: 1px solid rgba(0, 0, 0, 0.12); 
+
+  &:hover {
+    // 2. Efecto Zoom (ampliación del 5%)
+    transform: scale(1.05);
+
+    // 3. Borde Azul
+    // Usamos la variable nativa de Bootstrap para que coincida con tu theme
+    border-color: var(--bs-primary) !important; 
+    border-width: 2px; // Hacemos el borde un poco más grueso al pasar el mouse
+
+    // 4. (Opcional pero recomendado) Sombra suave para dar efecto de elevación
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    
+    // Evita que la tarjeta quede tapada por sus vecinas al ampliarse
+    z-index: 10;
+    position: relative; 
+  }
+}
