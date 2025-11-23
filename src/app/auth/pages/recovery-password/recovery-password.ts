@@ -32,7 +32,7 @@ export default class RecoveryPassword {
 
 
   recoveryPassword(){
-    this.authService.recoveryPassword(this.formRecovery.controls.email.value!).subscribe({
+    this.authService.recoveryUserPassword(this.formRecovery.controls.email.value!).subscribe({
       next: (res) => {
         console.log(res);
         this.alertSrv.handlerAlerta('Datos recuperados', `Su contraseña es: ${ res.password }`, 'success')

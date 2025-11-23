@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="row pt-5">
+
+
+        <h1 class="text-primary text-center">
+            <mat-icon style="font-size: 40px; width: 40px; height: auto;">account_circle</mat-icon>
+            Mi perfil
+        </h1>
+
+        <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 ">
+            <div class="card mt-5 shadow border-0">
+                <div class="card-body mt-3">
+                    <form [formGroup]="formProfile">
+                        <mat-form-field class="w-100" appearance="outline">
+                            <mat-label>Nombre</mat-label>
+                            <input formControlName="nombre" matInput type="text" required>
+                        </mat-form-field>
+                        
+                        <mat-form-field class="w-100" appearance="outline">
+                            <mat-label>Correo</mat-label>
+                            <input formControlName="correo" matInput placeholder="usuario@ejemplo.com" type="email"
+                                required>
+                        </mat-form-field>
+
+                        <mat-form-field class="w-100" appearance="outline">
+                            <mat-label>Contraseña</mat-label>
+                            <input formControlName="password" matInput type="text" required>
+                        </mat-form-field>
+
+
+                        <div class="d-flex gap-2 justify-content-end">
+                            <button (click)="editarPerfil()" class="btn btn-primary fw-bold">Editar perfil</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

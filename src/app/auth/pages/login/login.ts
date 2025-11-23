@@ -28,8 +28,8 @@ export class Login {
 
   // formulario login
   public formLogin = this.fb.group({
-    email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required]]
+    email: ['sofia@correo.com', [Validators.required, Validators.email]],
+    password: ['Password123$', [Validators.required]]
   })
 
 

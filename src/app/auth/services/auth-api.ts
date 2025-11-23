@@ -22,7 +22,7 @@ export class AuthApi {
   }
 
 
-  recoveryPassword(correo: string): Observable<any>{
+  recoveryUserPassword(correo: string): Observable<any>{
     return this.http.get(`${ this.urlBaseAPI }/usuario/recoveryPassword?correo=${correo}`)
   }
 
