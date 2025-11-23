@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { AuthApi } from '../../services/auth-api';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { AlertService } from '../../../shared/services/alert-service';
 
 @Component({
@@ -13,7 +13,8 @@ import { AlertService } from '../../../shared/services/alert-service';
     MatInputModule,
     FormsModule,
     ReactiveFormsModule,
-  ],
+    RouterLink
+],
   templateUrl: './login.html',
   styleUrl: './login.scss',
 })

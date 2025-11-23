@@ -10,6 +10,10 @@ export const routes: Routes = [
         component: Login
     },
     {
+        path: 'create-account',
+        loadComponent: () => import('./auth/pages/create-account/create-account')
+    },
+    {
         path: '',
         component: DashboardLayout,
         canActivate: [authGuard],

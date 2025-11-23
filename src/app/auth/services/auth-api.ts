@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { UserRequest } from '../interfaces/auth.request';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +15,10 @@ export class AuthApi {
     return this.http.post(`${ this.urlBaseAPI }/usuario/login`, { correo, password });
   }
 
+
+  register(request: UserRequest){
+    return this.http.post(`${ this.urlBaseAPI }/usuario`, request)
+  }
 
 
 

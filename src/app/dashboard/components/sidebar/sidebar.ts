@@ -1,13 +1,14 @@
 import { Component, computed, ElementRef, inject } from '@angular/core';
 import { SidebarMenu } from '../../services/sidebar-menu/sidebar-menu';
 import { Router, RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { NgClass } from '@angular/common';
+
 
 @Component({
   selector: 'dashboard-sidebar',
   imports: [
-    CommonModule,
     RouterModule,
+    NgClass,
   ],
   templateUrl: './sidebar.html',
   styleUrl: './sidebar.scss',
