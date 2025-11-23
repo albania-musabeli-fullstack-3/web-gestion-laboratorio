@@ -1,44 +1,64 @@
 <nav class="navbar bg-primary p-3">
-    <div class="container-fluid">
-        <a class="navbar-brand text-light d-flex justify-content-center align-items-center"><mat-icon>science</mat-icon>
-            <span class="ms-2">Gestión Laboratorio</span></a>
-        <button class="navbar-toggler d-block d-md-none" type="button" data-bs-toggle="offcanvas"
-            data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-            <mat-icon>menu_open</mat-icon>
+    <div class="container-fluid d-flex justify-content-between align-items-center">
+
+        <a class="navbar-brand text-light d-flex align-items-center" routerLink="/">
+            <mat-icon>science</mat-icon>
+            <span class="ms-2 d-none d-md-inline">Gestión Laboratorio</span>
+        </a>
+
+        <button class="navbar-toggler d-block d-md-none text-light" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasNavbar">
+            <mat-icon class="text-light">menu</mat-icon>
         </button>
-        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-            <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Offcanvas</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
-                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Dropdown
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </li>
-                </ul>
-                <form class="d-flex mt-3" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
-            </div>
+
+        <div class="d-none d-md-flex align-items-center gap-3">
+
+            <button mat-icon-button color="accent" routerLink="/" title="Inicio">
+                <mat-icon class="text-light">home</mat-icon>
+            </button>
+
+            <button mat-icon-button color="accent" [matMenuTriggerFor]="profileMenu" title="Mi cuenta">
+                <mat-icon class="text-light">account_circle</mat-icon>
+            </button>
+
+            <mat-menu #profileMenu="matMenu">
+                <button mat-menu-item routerLink="/perfil">
+                    <mat-icon>person_outline</mat-icon>
+                    <span>Mi Perfil</span>
+                </button>
+
+                <button mat-menu-item (click)="logout()">
+                    <mat-icon>logout</mat-icon>
+                    <span>Cerrar Sesión</span>
+                </button>
+            </mat-menu>
+
         </div>
     </div>
 </nav>
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title text-primary">Menú</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+    </div>
+    <div class="offcanvas-body">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/" data-bs-dismiss="offcanvas">
+                    <mat-icon class="me-2">home</mat-icon> Inicio
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/perfil" data-bs-dismiss="offcanvas">
+                    <mat-icon class="me-2">person_outline</mat-icon> Mi Perfil
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-danger" (click)="logout(); $event.preventDefault()" data-bs-dismiss="offcanvas">
+                    <mat-icon class="me-2">logout</mat-icon> Cerrar Sesión
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
