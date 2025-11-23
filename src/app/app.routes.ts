@@ -14,6 +14,10 @@ export const routes: Routes = [
         loadComponent: () => import('./auth/pages/create-account/create-account')
     },
     {
+        path: 'recovery-password',
+        loadComponent: () => import('./auth/pages/recovery-password/recovery-password')
+    },
+    {
         path: '',
         component: DashboardLayout,
         canActivate: [authGuard],

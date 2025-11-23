@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UserRequest } from '../interfaces/auth.request';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -20,6 +21,10 @@ export class AuthApi {
     return this.http.post(`${ this.urlBaseAPI }/usuario`, request)
   }
 
+
+  recoveryPassword(correo: string): Observable<any>{
+    return this.http.get(`${ this.urlBaseAPI }/usuario/recoveryPassword?correo=${correo}`)
+  }
 
 
 }
