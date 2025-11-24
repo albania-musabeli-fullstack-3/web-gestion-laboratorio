@@ -11,13 +11,18 @@ export class SidebarMenu {
       label: 'Módulos',
       icon: 'lni lni-list',
       submenu: [
+        // {
+        //   label: 'Usuarios',
+        //   link: 'usuarios',
+        //   codPrograma: 'GL001',
+        //   nombrePrograma: 'GL001 - Mantención Usuarios'
+        // },
         {
-          label: 'Usuarios',
-          link: 'usuarios',
+          label: 'Laboratorios',
+          link: 'laboratorios',
           codPrograma: 'GL001',
-          nombrePrograma: 'GL001 - Mantención Usuarios'
+          nombrePrograma: 'GL001 - Mantención Laboratorios'
         },
-
         {
           label: 'Resultados',
           link: 'resultados',

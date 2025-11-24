@@ -1,0 +1,61 @@
+<div class="container">
+    <h4>Gestión de laboratorios</h4>
+
+    <div class="card shadow border-0 rounded-2 mt-4">
+        <div class="card-body">
+
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+                <ng-container matColumnDef="accion">
+                    <th mat-header-cell *matHeaderCellDef> Accion </th>
+                    <td mat-cell *matCellDef="let element">
+                        <button (click)="editarLaboratorio(element)"  matTooltip="Editar laboratorio"  matIconButton>
+                            <mat-icon style="color: #1976d2;">edit</mat-icon>
+                        </button>
+                        <button (click)="eliminarLaboratorio(element)" matTooltip="eliminar laboratorio" matIconButton>
+                            <mat-icon style="color: rgb(157, 30, 30);">delete</mat-icon>
+                        </button>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="nombre">
+                    <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                    <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="direccion">
+                    <th mat-header-cell *matHeaderCellDef> Dirección </th>
+                    <td mat-cell *matCellDef="let element"> {{element.direccion}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="telefono">
+                    <th mat-header-cell *matHeaderCellDef> Teléfono </th>
+                    <td mat-cell *matCellDef="let element"> {{element.telefono}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="correo">
+                    <th mat-header-cell *matHeaderCellDef> Correo </th>
+                    <td mat-cell *matCellDef="let element"> {{element.correo}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="especialidad">
+                    <th mat-header-cell *matHeaderCellDef> Especialidad </th>
+                    <td mat-cell *matCellDef="let element"> {{element.especialidad}} </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+
+
+        </div>
+    </div>
+    <div class="d-flex justify-content-end">
+        <button (click)="agregarLaboratorio()" class="btn btn-secondary mt-4">
+            <div class="d-flex align-items-center">
+                <mat-icon>person_add</mat-icon>
+                <span class="ms-2">Agregar usuario</span>
+            </div>
+        </button>
+    </div>
+</div>
