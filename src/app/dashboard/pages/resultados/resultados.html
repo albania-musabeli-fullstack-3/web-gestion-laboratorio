@@ -1,1 +1,60 @@
-<p>resultados works!</p>
+<div class="container">
+    <h4>Resultados de Análisis</h4>
+
+    <div class="d-flex justify-content-end">
+        <button (click)="agregarAnalisisLab()" class="btn btn-warning mt-4">
+            <div class="d-flex align-items-center">
+                <mat-icon>assignment</mat-icon>
+                <span class="ms-2">Agregar resultado</span>
+            </div>
+        </button>
+    </div>
+
+    <div class="card shadow border-0 rounded-2 mt-4">
+        <div class="card-body">
+
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+                <ng-container matColumnDef="accion">
+                    <th mat-header-cell *matHeaderCellDef> Accion </th>
+                    <td mat-cell *matCellDef="let element">
+                        <button (click)="editarAnalisisLab(element)" matTooltip="Editar laboratorio" matIconButton>
+                            <mat-icon style="color: #1976d2;">edit</mat-icon>
+                        </button>
+                        <button (click)="eliminarAnalisisLab(element)" matTooltip="eliminar laboratorio" matIconButton>
+                            <mat-icon style="color: rgb(157, 30, 30);">delete</mat-icon>
+                        </button>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="fechaAnalisis">
+                    <th mat-header-cell *matHeaderCellDef> Fecha Análisis </th>
+                    <td mat-cell *matCellDef="let element"> {{element.fechaAnalisis}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="nombreAnalisis">
+                    <th mat-header-cell *matHeaderCellDef> Nombre Análisis </th>
+                    <td mat-cell *matCellDef="let element"> {{element.nombreAnalisis}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="resultado">
+                    <th mat-header-cell *matHeaderCellDef> Resultado </th>
+                    <td mat-cell *matCellDef="let element"> {{element.resultado}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="observaciones">
+                    <th mat-header-cell *matHeaderCellDef> Observaciones </th>
+                    <td mat-cell *matCellDef="let element"> {{element.observaciones}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="nombreLab">
+                    <th mat-header-cell *matHeaderCellDef> Laboratorio </th>
+                    <td mat-cell *matCellDef="let element"> {{element.nombreLab}} </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </div>
+    </div>
+</div>
