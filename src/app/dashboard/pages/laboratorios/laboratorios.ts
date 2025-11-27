@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, ViewChild } from '@angular/core';
 import { ApiLaboratorio } from '../../services/api-laboratorio/api-laboratorio';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
@@ -7,6 +7,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { Laboratorio } from '../../interfaces/laboratorio.interface';
 import { GestionLab } from '../../components/modals/gestion-lab/gestion-lab';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-laboratorios',
@@ -16,11 +17,14 @@ import { GestionLab } from '../../components/modals/gestion-lab/gestion-lab';
     MatButtonModule,
     MatTooltipModule,
     MatDialogModule,
+    MatPaginatorModule,
   ],
   templateUrl: './laboratorios.html',
   styleUrl: './laboratorios.scss',
 })
 export default class Laboratorios implements OnInit {
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   laboratorios: Laboratorio[] = [];
   dataSource = new MatTableDataSource(this.laboratorios);
@@ -39,6 +43,7 @@ export default class Laboratorios implements OnInit {
       next: (res) => {
         const laboratorios = res.sort((a,b) => b.id! - a.id!)
         this.dataSource = new MatTableDataSource(laboratorios);
+        this.dataSource.paginator = this.paginator;
       },
       error: (error) => {
         console.log(error);
