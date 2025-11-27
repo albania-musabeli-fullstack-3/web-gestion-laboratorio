@@ -1,11 +1,11 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { LaboratorioRes, ResultadosLabRes } from '../../interfaces/laboratorio.response';
+import { Laboratorio, ResultadosLabRes } from '../../interfaces/laboratorio.interface';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { LaboratorioApi } from '../../services/laboratorio-api/laboratorio-api';
+import { ApiLaboratorio } from '../../services/api-laboratorio/api-laboratorio';
 
 @Component({
   selector: 'app-resultados',
@@ -25,7 +25,7 @@ export default class Resultados implements OnInit {
   dataSource = new MatTableDataSource(this.resultadosLab);
   displayedColumns: string[] = ['accion', 'fechaAnalisis', 'nombreAnalisis', 'resultado', 'observaciones', 'nombreLab'];
 
-  private laboratorioSrv = inject(LaboratorioApi);
+  private laboratorioSrv = inject(ApiLaboratorio);
 
   ngOnInit(): void {
     this.getAllResultados();

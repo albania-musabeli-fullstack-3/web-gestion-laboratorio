@@ -1,12 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { LaboratorioRes, ResultadosLabRes } from '../../interfaces/laboratorio.response';
+import { Laboratorio, ResultadosLabRes } from '../../interfaces/laboratorio.interface';
 
 @Injectable({
   providedIn: 'root',
 })
-export class LaboratorioApi {
+export class ApiLaboratorio {
   
 
   constructor(private http: HttpClient){}
@@ -15,8 +15,14 @@ export class LaboratorioApi {
 
 
   getAllLaboratorios(){
-    return this.http.get<LaboratorioRes[]>(`${this.urlBaseAPI}/laboratorio`)
+    return this.http.get<Laboratorio[]>(`${this.urlBaseAPI}/laboratorio`)
   }
+
+  createLaboratorio(request: Laboratorio){
+    return this.http.post<Laboratorio>(`${this.urlBaseAPI}/laboratorio`, request)
+  }
+
+
 
   getAllResultadosAnalisis(){
     return this.http.get<ResultadosLabRes[]>(`${this.urlBaseAPI}/resultado`)

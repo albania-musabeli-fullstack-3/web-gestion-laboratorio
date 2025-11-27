@@ -1,11 +1,12 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { LaboratorioApi } from '../../services/laboratorio-api/laboratorio-api';
+import { ApiLaboratorio } from '../../services/api-laboratorio/api-laboratorio';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatDialogModule } from '@angular/material/dialog';
-import { LaboratorioRes } from '../../interfaces/laboratorio.response';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { Laboratorio } from '../../interfaces/laboratorio.interface';
+import { GestionLab } from '../../components/modals/gestion-lab/gestion-lab';
 
 @Component({
   selector: 'app-laboratorios',
@@ -21,11 +22,12 @@ import { LaboratorioRes } from '../../interfaces/laboratorio.response';
 })
 export default class Laboratorios implements OnInit {
 
-  laboratorios: LaboratorioRes[] = [];
+  laboratorios: Laboratorio[] = [];
   dataSource = new MatTableDataSource(this.laboratorios);
   displayedColumns: string[] = ['accion', 'nombre', 'direccion', 'telefono', 'correo', 'especialidad'];
 
-  private laboratorioSrv = inject(LaboratorioApi);
+  private laboratorioSrv = inject(ApiLaboratorio);
+  private dialog = inject(MatDialog);
 
   ngOnInit(): void {
     this.getAllLaboratorios()
@@ -35,8 +37,8 @@ export default class Laboratorios implements OnInit {
   getAllLaboratorios(){
     this.laboratorioSrv.getAllLaboratorios().subscribe({
       next: (res) => {
-        console.log(res);
-        this.dataSource = new MatTableDataSource(res);
+        const laboratorios = res.sort((a,b) => b.id! - a.id!)
+        this.dataSource = new MatTableDataSource(laboratorios);
       },
       error: (error) => {
         console.log(error);
@@ -45,17 +47,30 @@ export default class Laboratorios implements OnInit {
     })
   }
 
-  agregarLaboratorio(){
+  openModalAgregarEditarLab(row: Laboratorio | null = null, editar: boolean = false){
+    const dialogRef = this.dialog.open(GestionLab, {
+      width: '800px',
+      maxWidth: '95vw',
+      autoFocus: false,
+      disableClose: false,
+      data: {
+        laboratorio: row,
+        editar
+      }
+    }).afterClosed().subscribe(result => {
+      if (result.status) {
+        this.getAllLaboratorios();
+      }
+    })
+
     
   }
 
 
-  editarLaboratorio(row: LaboratorioRes){
-
-  }
+ 
 
 
-  eliminarLaboratorio(row: LaboratorioRes){
+  eliminarLaboratorio(row: Laboratorio){
 
   }
 
