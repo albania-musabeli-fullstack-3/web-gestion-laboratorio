@@ -15,17 +15,27 @@ export class ApiLaboratorio {
 
 
   getAllLaboratorios(){
-    return this.http.get<Laboratorio[]>(`${this.urlBaseAPI}/laboratorio`)
+    return this.http.get<Laboratorio[]>(`${this.urlBaseAPI}/laboratorio`);
   }
+
 
   createLaboratorio(request: Laboratorio){
-    return this.http.post<Laboratorio>(`${this.urlBaseAPI}/laboratorio`, request)
+    return this.http.post<Laboratorio>(`${this.urlBaseAPI}/laboratorio`, request);
   }
-
 
 
   getAllResultadosAnalisis(){
-    return this.http.get<ResultadosLabRes[]>(`${this.urlBaseAPI}/resultado`)
+    return this.http.get<ResultadosLabRes[]>(`${this.urlBaseAPI}/resultado`);
   }
-  
+
+
+  editarLaboratorio(id: number, request: Laboratorio){
+    return this.http.put<Laboratorio>(`${this.urlBaseAPI}/laboratorio/${id}`, request);
+  }
+
+
+  eliminarLaboratorio(id: number){
+    return this.http.delete<Laboratorio>(`${this.urlBaseAPI}/laboratorio/${id}`);
+  }
+
 }

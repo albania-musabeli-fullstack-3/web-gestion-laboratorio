@@ -8,6 +8,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { Laboratorio } from '../../interfaces/laboratorio.interface';
 import { GestionLab } from '../../components/modals/gestion-lab/gestion-lab';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { AlertService } from '../../../shared/services/alert-service';
 
 @Component({
   selector: 'app-laboratorios',
@@ -31,28 +32,31 @@ export default class Laboratorios implements OnInit {
   displayedColumns: string[] = ['accion', 'nombre', 'direccion', 'telefono', 'correo', 'especialidad'];
 
   private laboratorioSrv = inject(ApiLaboratorio);
+  private alertSrv = inject(AlertService);
   private dialog = inject(MatDialog);
+
 
   ngOnInit(): void {
     this.getAllLaboratorios()
   }
 
 
-  getAllLaboratorios(){
+  getAllLaboratorios() {
     this.laboratorioSrv.getAllLaboratorios().subscribe({
       next: (res) => {
-        const laboratorios = res.sort((a,b) => b.id! - a.id!)
-        this.dataSource = new MatTableDataSource(laboratorios);
+        const laboratorios = res.sort((a, b) => b.id! - a.id!)
+        //this.dataSource = new MatTableDataSource(laboratorios);
+        this.dataSource.data = laboratorios;
         this.dataSource.paginator = this.paginator;
       },
       error: (error) => {
         console.log(error);
-        
+
       }
     })
   }
 
-  openModalAgregarEditarLab(row: Laboratorio | null = null, editar: boolean = false){
+  openModalAgregarEditarLab(row: Laboratorio | null = null, editar: boolean = false) {
     const dialogRef = this.dialog.open(GestionLab, {
       width: '800px',
       maxWidth: '95vw',
@@ -68,16 +72,32 @@ export default class Laboratorios implements OnInit {
       }
     })
 
-    
-  }
-
-
- 
-
-
-  eliminarLaboratorio(row: Laboratorio){
 
   }
 
+
+  async eliminarLaboratorio(row: Laboratorio) {
+    if (!row.id) return;
+
+    const confirmado = await this.alertSrv.confirmar(
+      'Eliminar laboratorio',
+      `Está a punto de eliminar ${row.nombre}. Esta acción no se puede deshacer.`,
+      'Sí, eliminar',
+      'Cancelar'
+    );
+
+    if (confirmado) {
+      this.laboratorioSrv.eliminarLaboratorio(row.id!).subscribe({
+        next: () => {
+          this.alertSrv.handlerAlerta('Eliminado', 'El laboratorio ha sido eliminado', 'success');
+          this.getAllLaboratorios();
+        },
+        error: (err) => {
+          console.error(err);
+          this.alertSrv.handlerAlerta('Precaución', 'Este laboratorio tiene resultados asociados', 'warning');
+        }
+      });
+    }
+  }
 
 }

@@ -64,6 +64,23 @@ export class GestionLab implements OnInit {
     }
   }
 
+  private editarLabModal(){
+    if (this.formLaboratorio.valid) {
+      const request = this.formLaboratorio.value;
+      const id = this.data.laboratorio.id;
+
+      this.laboratorioSrv.editarLaboratorio(id, request).subscribe({
+        next: (res) =>{
+          this.dialogRef.close({status: true});
+          this.alertSrv.handlerAlerta('Editar Laboratorio', 'Datos actualizados', 'success');
+        },
+        error: (error) => {
+
+        }
+      })
+    }
+  }
+
 
   agregarEditarLab(){
     //validar campos del formulario
@@ -93,6 +110,7 @@ export class GestionLab implements OnInit {
 
     if (this.data.editar) {
       //modo editar
+      this.editarLabModal();
 
     }
     else {
