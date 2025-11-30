@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Laboratorio, ResultadosLabRes } from '../../interfaces/laboratorio.interface';
+import { Laboratorio, ResultadoReq, ResultadosLabRes } from '../../interfaces/laboratorio.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -38,4 +38,8 @@ export class ApiLaboratorio {
     return this.http.delete<Laboratorio>(`${this.urlBaseAPI}/laboratorio/${id}`);
   }
 
+
+  createResultado(request: ResultadoReq){
+    return this.http.post<ResultadosLabRes>(`${this.urlBaseAPI}/resultado` , request);
+  }
 }
