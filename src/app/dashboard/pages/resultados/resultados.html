@@ -18,10 +18,10 @@
                 <ng-container matColumnDef="accion">
                     <th mat-header-cell *matHeaderCellDef> Accion </th>
                     <td mat-cell *matCellDef="let element">
-                        <button (click)="openModalAgregarEditarResultado(element, true)" matTooltip="Editar laboratorio" matIconButton>
+                        <button (click)="openModalAgregarEditarResultado(element, true)" matTooltip="Editar resultado" matIconButton>
                             <mat-icon style="color: #1976d2;">edit</mat-icon>
                         </button>
-                        <button (click)="eliminarAnalisisLab(element)" matTooltip="eliminar laboratorio" matIconButton>
+                        <button (click)="eliminarAnalisisLab(element)" matTooltip="Eliminar resultado" matIconButton>
                             <mat-icon style="color: rgb(157, 30, 30);">delete</mat-icon>
                         </button>
                     </td>
