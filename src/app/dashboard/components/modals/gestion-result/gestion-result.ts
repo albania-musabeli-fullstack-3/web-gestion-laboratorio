@@ -48,11 +48,36 @@ export class GestionResult implements OnInit {
     this.titulo = this.data.editar ? 'Editar Resultado' : 'Agregar Resultado';
     this.nombreBoton = this.data.editar ? 'Editar Resultado' : 'Agregar Resultado';
     this.listarLaboratorios();
+
+    if (this.data.editar) {
+      this.cargarFormularioEdit()
+    }
+  }
+
+
+  cargarFormularioEdit(){
+    console.log('Datos row desde el padre', this.data);
+
+    const fechaResultado = this.data.resultado.fechaAnalisis;
+    const fechaResultadoJS = DateTime.fromFormat(fechaResultado, 'dd/MM/yyyy').toJSDate();
+    
+    // this.formResultado.controls.nombreAnalisis.setValue(this.data.resultado.nombreAnalisis);
+    // this.formResultado.controls.idLaboratorio.setValue(this.data.resultado.laboratorio.id);
+    // this.formResultado.controls.fechaAnalisis.setValue(fechaResultadoJS);
+    // this.formResultado.controls.resultado.setValue(this.data.resultado.resultado);
+    // this.formResultado.controls.observaciones.setValue(this.data.resultado.observaciones);
+    this.formResultado.patchValue({
+    fechaAnalisis: fechaResultadoJS,
+    nombreAnalisis: this.data.resultado.nombreAnalisis,
+    idLaboratorio: this.data.resultado.laboratorio.id,
+    resultado: this.data.resultado.resultado,
+    observaciones: this.data.resultado.observaciones,
+  });
   }
 
 
   formResultado = this.fb.group({
-    fechaAnalisis: [null, [Validators.required]],
+    fechaAnalisis: [null as Date | null, [Validators.required]],
     nombreAnalisis: ['', [Validators.required]],
     resultado: ['', [Validators.required]],
     observaciones: ['', [Validators.required]],
@@ -99,19 +124,18 @@ export class GestionResult implements OnInit {
 
     if (this.data.editar) {
       //modo editar
-      this.editarResultado();
+      this.editarResultadoModal();
 
     }
     else {
       // modo agregar
-      this.agregarResultado();
+      this.agregarResultadoModal();
     }
- 
   }
 
 
 
-  private agregarResultado(){
+  private agregarResultadoModal(){
     if (this.formResultado.valid) {
       const request = {
         //...this.formResultado.value,
@@ -131,15 +155,38 @@ export class GestionResult implements OnInit {
           
         },
         error: (error) => {
-          console.log(error);
+          console.log('Error', error);
           
         }
       })
     }
   }
 
-  private editarResultado(){
 
+
+  private editarResultadoModal(){
+    if (this.formResultado.valid) {
+      const request = {
+        //...this.formResultado.value,
+        nombreAnalisis: this.formResultado.controls.nombreAnalisis.value!,
+        resultado: this.formResultado.controls.resultado.value!,
+        observaciones: this.formResultado.controls.observaciones.value!,
+        idLaboratorio: this.formResultado.controls.idLaboratorio.value!,
+        fechaAnalisis: DateTime.fromJSDate(this.formResultado.controls.fechaAnalisis.value!).toFormat("yyyy-MM-dd'T'HH:mm:ss")
+      }
+      const id = this.data.resultado.id;
+
+      this.laboratorioSrv.editarResultado(id, request).subscribe({
+        next: (res) => {
+          this.dialogRef.close({status: true});
+          this.alertSrv.handlerAlerta('Editar Laboratorio', 'Datos Actualizados', 'success');
+        },
+        error: (error) => {
+          console.log('Error', error);
+          
+        }
+      })
+    }
   }
 
 

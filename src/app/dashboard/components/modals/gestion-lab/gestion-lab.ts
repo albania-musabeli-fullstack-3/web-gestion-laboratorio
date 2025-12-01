@@ -106,7 +106,6 @@ export class GestionLab implements OnInit {
       return;
     }
     
-    
 
     if (this.data.editar) {
       //modo editar

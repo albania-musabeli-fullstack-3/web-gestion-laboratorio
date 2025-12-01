@@ -42,4 +42,11 @@ export class ApiLaboratorio {
   createResultado(request: ResultadoReq){
     return this.http.post<ResultadosLabRes>(`${this.urlBaseAPI}/resultado` , request);
   }
+
+  
+  editarResultado(id: number, request: ResultadoReq){
+    return this.http.put<ResultadosLabRes>(`${this.urlBaseAPI}/resultado/${id}`, request);
+  }
+
+
 }
