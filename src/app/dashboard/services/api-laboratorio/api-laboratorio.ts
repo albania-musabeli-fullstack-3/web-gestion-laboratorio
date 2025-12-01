@@ -48,5 +48,9 @@ export class ApiLaboratorio {
     return this.http.put<ResultadosLabRes>(`${this.urlBaseAPI}/resultado/${id}`, request);
   }
 
+  eliminarResultado(id: number){
+    return this.http.delete<ResultadosLabRes>(`${this.urlBaseAPI}/resultado/${id}`);
+  }
+
 
 }

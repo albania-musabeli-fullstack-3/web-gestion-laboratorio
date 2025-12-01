@@ -7,6 +7,7 @@ import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ApiLaboratorio } from '../../services/api-laboratorio/api-laboratorio';
 import { GestionResult } from '../../components/modals/gestion-result/gestion-result';
+import { AlertService } from '../../../shared/services/alert-service';
 
 @Component({
   selector: 'app-resultados',
@@ -28,6 +29,8 @@ export default class Resultados implements OnInit {
 
   private laboratorioSrv = inject(ApiLaboratorio);
   private dialog = inject(MatDialog);
+  private alertSrv = inject(AlertService);
+  
 
 
   ngOnInit(): void {
@@ -71,18 +74,27 @@ export default class Resultados implements OnInit {
     })
   }
 
-  agregarAnalisisLab() {
+  
 
-  }
+  async eliminarAnalisisLab(row: ResultadosLabRes) {
+     const confirmado = await this.alertSrv.confirmar(
+      'Eliminar laboratorio',
+      `Está a punto de eliminar ${row.nombreAnalisis}. Esta acción no se puede deshacer.`,
+      'Sí, eliminar',
+      'Cancelar'
+    );
 
-
-  editarAnalisisLab(row: ResultadosLabRes) {
-
-  }
-
-
-  eliminarAnalisisLab(row: ResultadosLabRes) {
-
+    if (confirmado) {
+      this.laboratorioSrv.eliminarResultado(row.id!).subscribe({
+        next: () => {
+          this.alertSrv.handlerAlerta('Eliminado', 'El resultado ha sido eliminado', 'success');
+          this.getAllResultados();
+        },
+        error: (error) => {
+          console.log(error);
+        }
+      })
+    }
   }
 
 
