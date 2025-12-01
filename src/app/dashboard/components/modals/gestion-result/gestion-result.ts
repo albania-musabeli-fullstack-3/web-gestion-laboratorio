@@ -148,15 +148,11 @@ export class GestionResult implements OnInit {
       this.laboratorioSrv.createResultado(request).subscribe({
         next: (res) => {
           console.log(res);
-
+          this.dialogRef.close({status: true});
           this.alertSrv.handlerAlerta('Nuevo resultado agregado', '', 'success')
-          this.formResultado.reset();
-          this.dialogRef.close();
-          
         },
         error: (error) => {
           console.log('Error', error);
-          
         }
       })
     }

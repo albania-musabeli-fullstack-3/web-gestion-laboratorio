@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, ViewChild } from '@angular/core';
 import { Laboratorio, ResultadosLabRes } from '../../interfaces/laboratorio.interface';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
@@ -8,6 +8,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { ApiLaboratorio } from '../../services/api-laboratorio/api-laboratorio';
 import { GestionResult } from '../../components/modals/gestion-result/gestion-result';
 import { AlertService } from '../../../shared/services/alert-service';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-resultados',
@@ -17,11 +18,14 @@ import { AlertService } from '../../../shared/services/alert-service';
     MatButtonModule,
     MatTooltipModule,
     MatDialogModule,
+    MatPaginatorModule,
   ],
   templateUrl: './resultados.html',
   styleUrl: './resultados.scss',
 })
 export default class Resultados implements OnInit {
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   resultadosLab: ResultadosLabRes[] = [];
   dataSource = new MatTableDataSource(this.resultadosLab);
@@ -66,6 +70,8 @@ export default class Resultados implements OnInit {
           nombreLab: resultado.laboratorio.nombre
         })) as ResultadosLabRes[]
         this.dataSource = new MatTableDataSource(resultados);
+        this.dataSource.paginator = this.paginator;
+
       },
       error: (error) => {
         console.log(error);
