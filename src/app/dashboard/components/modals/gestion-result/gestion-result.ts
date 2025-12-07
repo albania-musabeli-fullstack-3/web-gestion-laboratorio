@@ -97,7 +97,6 @@ export class GestionResult implements OnInit {
 
 
   agregarEditarResultado() {
-    const fechaFormateada = this.formResultado.controls.fechaAnalisis.value!;
     const {nombreAnalisis, observaciones, resultado} = this.formResultado.value;
 
     if (nombreAnalisis!.length < 3) {

@@ -22,19 +22,14 @@
         @for (programa of programas(); track $index) {
 
         <div class="col-3">
-            <mat-card role="button"
-                tabindex="0"
-                (click)="navegarCards(programa.link)"
-                (keyup.enter)="navegarCards(programa.link)"
-                (keyup.space)="navegarCards(programa.link)"
-                appearance="outlined"
-                class="shadow-sm border-2"
-            >
-                <mat-card-header>
-                    <mat-card-title class="text-primary fw-semibold">{{ programa.codPrograma }}</mat-card-title>
-                    <mat-card-subtitle class="my-2">{{ programa.nombrePrograma }}</mat-card-subtitle>
-                </mat-card-header>
-            </mat-card>
+            <button class="p-0 border-0 bg-transparent w-100 text-start" (click)="navegarCards(programa.link)">
+                <mat-card appearance="outlined" class="shadow-sm border-2">
+                    <mat-card-header>
+                        <mat-card-title class="text-primary fw-semibold">{{ programa.codPrograma }}</mat-card-title>
+                        <mat-card-subtitle class="my-2">{{ programa.nombrePrograma }}</mat-card-subtitle>
+                    </mat-card-header>
+                </mat-card>
+            </button>
 
         </div>
         }
