@@ -65,7 +65,7 @@ export default class Laboratorios implements OnInit {
         editar
       }
     }).afterClosed().subscribe(result => {
-      if (result.status) {
+      if (result?.status) {
         this.getAllLaboratorios();
       }
     })

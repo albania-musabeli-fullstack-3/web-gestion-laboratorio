@@ -1,5 +1,7 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { HttpTestingController } from '@angular/common/http/testing';
 import { AuthApi } from './auth-api';
 import { UserRequest } from '../interfaces/auth.request';
 
@@ -12,6 +14,7 @@ describe('AuthApi Service', () => {
     TestBed.configureTestingModule({
       providers: [
         AuthApi,
+        provideHttpClient(withInterceptorsFromDi()), // Agregado para proveer HttpClient correctamente
         provideHttpClientTesting()
       ]
     });
@@ -48,7 +51,7 @@ describe('AuthApi Service', () => {
       correo: 'test@correo.com',
       password: 'Test123$',
       nombre: 'Test User',
-      roles: [1]
+      roles: [1] // Ejemplo de roles
     };
     const mockResponse = { id: 1 };
 

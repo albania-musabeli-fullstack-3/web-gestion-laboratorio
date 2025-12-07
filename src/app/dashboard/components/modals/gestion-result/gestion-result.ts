@@ -75,7 +75,7 @@ export class GestionResult implements OnInit {
     nombreAnalisis: ['', [Validators.required]],
     resultado: ['', [Validators.required]],
     observaciones: ['', [Validators.required]],
-    idLaboratorio: [null, [Validators.required]]
+    idLaboratorio: [null as null | number, [Validators.required]]
   })
 
 
@@ -88,7 +88,7 @@ export class GestionResult implements OnInit {
         this.laboratorios.set(laboratoriosFormated);
       },
       error: (error) => {
-        console.log(error);
+        console.log('Error', error);
         
       }
     })
