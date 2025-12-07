@@ -23,8 +23,7 @@ import { DateTime } from 'luxon';
     MatDatepickerModule,
     MatNativeDateModule,
   ],
-  templateUrl: './gestion-result.html',
-  styleUrl: './gestion-result.scss',
+  templateUrl: './gestion-result.html'
 })
 export class GestionResult implements OnInit {
 
@@ -35,13 +34,13 @@ export class GestionResult implements OnInit {
   laboratorios = signal<Laboratorio[]>([]);
 
 
-  private fb = inject(FormBuilder);
-  private data = inject(MAT_DIALOG_DATA);
-  private laboratorioSrv = inject(ApiLaboratorio);
-  private alertSrv = inject(AlertService);
+  private readonly fb = inject(FormBuilder);
+  private readonly data = inject(MAT_DIALOG_DATA);
+  private readonly laboratorioSrv = inject(ApiLaboratorio);
+  private readonly alertSrv = inject(AlertService);
 
 
-  private dialogRef = inject(MatDialogRef<GestionResult>);
+  private readonly dialogRef = inject(MatDialogRef<GestionResult>);
 
 
   ngOnInit() {
@@ -61,11 +60,6 @@ export class GestionResult implements OnInit {
     const fechaResultado = this.data.resultado.fechaAnalisis;
     const fechaResultadoJS = DateTime.fromFormat(fechaResultado, 'dd/MM/yyyy').toJSDate();
     
-    // this.formResultado.controls.nombreAnalisis.setValue(this.data.resultado.nombreAnalisis);
-    // this.formResultado.controls.idLaboratorio.setValue(this.data.resultado.laboratorio.id);
-    // this.formResultado.controls.fechaAnalisis.setValue(fechaResultadoJS);
-    // this.formResultado.controls.resultado.setValue(this.data.resultado.resultado);
-    // this.formResultado.controls.observaciones.setValue(this.data.resultado.observaciones);
     this.formResultado.patchValue({
     fechaAnalisis: fechaResultadoJS,
     nombreAnalisis: this.data.resultado.nombreAnalisis,
@@ -90,7 +84,7 @@ export class GestionResult implements OnInit {
       next: (res) => {
         // laboratorios ordenados alfabeticamente
         const laboratoriosFormated = res.sort((a,b) =>
-        a.nombre!.localeCompare(b.nombre!, 'es', { sensitivity: 'base' }) );
+        a.nombre!.localeCompare(b.nombre as string, 'es', { sensitivity: 'base' }) );
         this.laboratorios.set(laboratoriosFormated);
       },
       error: (error) => {
@@ -104,8 +98,6 @@ export class GestionResult implements OnInit {
 
   agregarEditarResultado() {
     const fechaFormateada = this.formResultado.controls.fechaAnalisis.value!;
-    const dt = DateTime.fromJSDate(fechaFormateada).toFormat("yyyy-MM-dd'T'HH:mm:ss");
-
     const {nombreAnalisis, observaciones, resultado} = this.formResultado.value;
 
     if (nombreAnalisis!.length < 3) {
@@ -137,13 +129,15 @@ export class GestionResult implements OnInit {
 
   private agregarResultadoModal(){
     if (this.formResultado.valid) {
+
+      const fechaAnalisis = this.formResultado.controls.fechaAnalisis.value as Date;
+
       const request = {
-        //...this.formResultado.value,
         nombreAnalisis: this.formResultado.controls.nombreAnalisis.value!,
         resultado: this.formResultado.controls.resultado.value!,
         observaciones: this.formResultado.controls.observaciones.value!,
         idLaboratorio: this.formResultado.controls.idLaboratorio.value!,
-        fechaAnalisis: DateTime.fromJSDate(this.formResultado.controls.fechaAnalisis.value!).toFormat("yyyy-MM-dd'T'HH:mm:ss")
+        fechaAnalisis: DateTime.fromJSDate(fechaAnalisis).toFormat("yyyy-MM-dd'T'HH:mm:ss")
       }
       this.laboratorioSrv.createResultado(request).subscribe({
         next: (res) => {
@@ -162,13 +156,16 @@ export class GestionResult implements OnInit {
 
   private editarResultadoModal(){
     if (this.formResultado.valid) {
+
+      const fechaAnalisis = this.formResultado.controls.fechaAnalisis.value as Date;
+
       const request = {
         //...this.formResultado.value,
         nombreAnalisis: this.formResultado.controls.nombreAnalisis.value!,
         resultado: this.formResultado.controls.resultado.value!,
         observaciones: this.formResultado.controls.observaciones.value!,
         idLaboratorio: this.formResultado.controls.idLaboratorio.value!,
-        fechaAnalisis: DateTime.fromJSDate(this.formResultado.controls.fechaAnalisis.value!).toFormat("yyyy-MM-dd'T'HH:mm:ss")
+        fechaAnalisis: DateTime.fromJSDate(fechaAnalisis).toFormat("yyyy-MM-dd'T'HH:mm:ss")
       }
       const id = this.data.resultado.id;
 

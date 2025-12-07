@@ -16,20 +16,19 @@ import { regexPattern } from '../../../../shared/utils/validations/regex.validat
     MatFormFieldModule,
     MatInputModule,
   ],
-  templateUrl: './gestion-lab.html',
-  styleUrl: './gestion-lab.scss',
+  templateUrl: './gestion-lab.html'
 })
 export class GestionLab implements OnInit {
 
   titulo = '';
   nombreBoton = '';
 
-  private fb = inject(FormBuilder);
+  private readonly fb = inject(FormBuilder);
 
-  private dialogRef = inject(MatDialogRef<GestionLab>);
-  private data = inject(MAT_DIALOG_DATA);
-  private laboratorioSrv = inject(ApiLaboratorio);
-  private alertSrv = inject(AlertService);
+  private readonly dialogRef = inject(MatDialogRef<GestionLab>);
+  private readonly data = inject(MAT_DIALOG_DATA);
+  private readonly laboratorioSrv = inject(ApiLaboratorio);
+  private readonly alertSrv = inject(AlertService);
   
 
   ngOnInit(){

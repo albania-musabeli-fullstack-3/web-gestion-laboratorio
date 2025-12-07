@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { inject, Injectable } from '@angular/core';
 import { Laboratorio, ResultadoReq, ResultadosLabRes } from '../../interfaces/laboratorio.interface';
 
 @Injectable({
@@ -8,10 +7,8 @@ import { Laboratorio, ResultadoReq, ResultadosLabRes } from '../../interfaces/la
 })
 export class ApiLaboratorio {
   
-
-  constructor(private http: HttpClient){}
-
-  private urlBaseAPI = 'http://localhost:8081/api';
+  private readonly http = inject(HttpClient);
+  private readonly urlBaseAPI = 'http://localhost:8081/api';
 
 
   getAllLaboratorios(){

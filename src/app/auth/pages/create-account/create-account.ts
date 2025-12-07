@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { Router, RouterLink } from '@angular/router';
@@ -16,16 +16,15 @@ import { passwordValidation } from '../../../shared/utils/validations/passwordVa
     MatInputModule,
     RouterLink,
   ],
-  templateUrl: './create-account.html',
-  styleUrl: './create-account.scss',
+  templateUrl: './create-account.html'
 })
 export default class CreateAccount {
 
   // inyección dependencias
-  private fb = inject(FormBuilder);
-  private authService = inject(AuthApi);
-  private router = inject(Router);
-  private alert = inject(AlertService);
+  private readonly fb = inject(FormBuilder);
+  private readonly authService = inject(AuthApi);
+  private readonly router = inject(Router);
+  private readonly alert = inject(AlertService);
 
   cargando = false;
 

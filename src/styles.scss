@@ -18,24 +18,16 @@ html {
 }
 
 body {
-  // Default the application to a light color theme. This can be changed to
-  // `dark` to enable the dark color theme, or to `light dark` to defer to the
-  // user's system settings.
   color-scheme: light;
-
-  // Set a default background, font and text colors for the application using
-  // Angular Material's system-level CSS variables. Learn more about these
-  // variables at https://material.angular.dev/guide/system-variables
   background-color: var(--mat-sys-surface);
   color: var(--mat-sys-on-surface);
   font: var(--mat-sys-body-medium);
 
-  // Reset the user agent margin.
   margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
 // ESTILOS DASHBOARD
@@ -175,7 +167,6 @@ a.sidebar_link:hover {
     top: 1.4rem;
     transform: rotate(-135deg);
     transition: all 0.3s;
-    ;
 }
 
 #sidebar.expand .sidebar_link[data-bs-toggle="collapse"].collapsed::after {
@@ -228,7 +219,7 @@ a.sidebar_link:hover {
   }
 
   .btn-outline-light:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.2);
     color: #fff;
     border-color: rgba(255, 255, 255, 0.6);
   }
@@ -238,7 +229,6 @@ a.sidebar_link:hover {
 
 /* ESTILOS HOME */
 .dashboard-container {
-  min-height: 100h;
   background: linear-gradient(to bottom, #f0f4f8 0%, #e0e8f0 100%);
   padding: 2rem;
 }

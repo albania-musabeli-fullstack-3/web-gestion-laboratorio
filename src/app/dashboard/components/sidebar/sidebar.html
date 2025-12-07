@@ -1,16 +1,6 @@
 <aside id="sidebar" class="expand d-none d-md-block">
 
-    <!-- LOGO - TOGGLE BUTTON -->
-    <!-- <div class="d-flex align-item-center">
-        <button (click)="toggleSidebar()" class="toggle_btn" type="button"> <i class="lni lni-angular"></i>
-        </button>
-        <div class="sidebar_logo">
-            <a routerLink="home">Advance</a>
-        </div>
-    </div> -->
-
     <ul class="sidebar_nav">
-
 
         @for (item of menuItems(); track $index) {
         <li class="sidebar_item">
@@ -42,8 +32,4 @@
         </li>
         }
     </ul>
-<!-- 
-    <div class="sidebar_footer mt-auto p-3 border-top">
-       
-    </div> -->
 </aside>

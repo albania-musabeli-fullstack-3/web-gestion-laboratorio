@@ -13,13 +13,12 @@ import { AlertService } from '../../../shared/services/alert-service';
     MatButtonModule,
     RouterLink,
   ],
-  templateUrl: './navbar.html',
-  styleUrl: './navbar.scss',
+  templateUrl: './navbar.html'
 })
 export class Navbar {
 
-  private router = inject(Router);
-  private alertService = inject(AlertService);
+  private readonly router = inject(Router);
+  private readonly alertService = inject(AlertService);
 
 
   async logout(){

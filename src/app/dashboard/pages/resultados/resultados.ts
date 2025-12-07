@@ -1,5 +1,5 @@
 import { Component, inject, OnInit, ViewChild } from '@angular/core';
-import { Laboratorio, ResultadosLabRes } from '../../interfaces/laboratorio.interface';
+import { ResultadosLabRes } from '../../interfaces/laboratorio.interface';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
@@ -20,8 +20,7 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
     MatDialogModule,
     MatPaginatorModule,
   ],
-  templateUrl: './resultados.html',
-  styleUrl: './resultados.scss',
+  templateUrl: './resultados.html'
 })
 export default class Resultados implements OnInit {
 
@@ -31,9 +30,9 @@ export default class Resultados implements OnInit {
   dataSource = new MatTableDataSource(this.resultadosLab);
   displayedColumns: string[] = ['accion', 'fechaAnalisis', 'nombreAnalisis', 'resultado', 'observaciones', 'nombreLab'];
 
-  private laboratorioSrv = inject(ApiLaboratorio);
-  private dialog = inject(MatDialog);
-  private alertSrv = inject(AlertService);
+  private readonly laboratorioSrv = inject(ApiLaboratorio);
+  private readonly dialog = inject(MatDialog);
+  private readonly alertSrv = inject(AlertService);
   
 
 
@@ -43,7 +42,7 @@ export default class Resultados implements OnInit {
 
   // modal resultados
   openModalAgregarEditarResultado(row: ResultadosLabRes | null = null, editar: boolean = false) {
-    const dialogRef = this.dialog.open(GestionResult, {
+    this.dialog.open(GestionResult, {
       width: '800px',
       maxWidth: '95vw',
       autoFocus: false,
@@ -95,7 +94,7 @@ export default class Resultados implements OnInit {
     );
 
     if (confirmado) {
-      this.laboratorioSrv.eliminarResultado(row.id!).subscribe({
+      this.laboratorioSrv.eliminarResultado(row.id).subscribe({
         next: () => {
           this.alertSrv.handlerAlerta('Eliminado', 'El resultado ha sido eliminado', 'success');
           this.getAllResultados();

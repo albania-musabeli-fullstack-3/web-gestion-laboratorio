@@ -20,8 +20,7 @@ import { AlertService } from '../../../shared/services/alert-service';
     MatDialogModule,
     MatPaginatorModule,
   ],
-  templateUrl: './laboratorios.html',
-  styleUrl: './laboratorios.scss',
+  templateUrl: './laboratorios.html'
 })
 export default class Laboratorios implements OnInit {
 
@@ -31,9 +30,9 @@ export default class Laboratorios implements OnInit {
   dataSource = new MatTableDataSource(this.laboratorios);
   displayedColumns: string[] = ['accion', 'nombre', 'direccion', 'telefono', 'correo', 'especialidad'];
 
-  private laboratorioSrv = inject(ApiLaboratorio);
-  private alertSrv = inject(AlertService);
-  private dialog = inject(MatDialog);
+  private readonly laboratorioSrv = inject(ApiLaboratorio);
+  private readonly alertSrv = inject(AlertService);
+  private readonly dialog = inject(MatDialog);
 
 
   ngOnInit(): void {
@@ -45,7 +44,6 @@ export default class Laboratorios implements OnInit {
     this.laboratorioSrv.getAllLaboratorios().subscribe({
       next: (res) => {
         const laboratorios = res.sort((a, b) => b.id! - a.id!)
-        //this.dataSource = new MatTableDataSource(laboratorios);
         this.dataSource.data = laboratorios;
         this.dataSource.paginator = this.paginator;
       },
@@ -57,7 +55,7 @@ export default class Laboratorios implements OnInit {
   }
 
   openModalAgregarEditarLab(row: Laboratorio | null = null, editar: boolean = false) {
-    const dialogRef = this.dialog.open(GestionLab, {
+    this.dialog.open(GestionLab, {
       width: '800px',
       maxWidth: '95vw',
       autoFocus: false,
@@ -87,7 +85,7 @@ export default class Laboratorios implements OnInit {
     );
 
     if (confirmado) {
-      this.laboratorioSrv.eliminarLaboratorio(row.id!).subscribe({
+      this.laboratorioSrv.eliminarLaboratorio(row.id).subscribe({
         next: () => {
           this.alertSrv.handlerAlerta('Eliminado', 'El laboratorio ha sido eliminado', 'success');
           this.getAllLaboratorios();

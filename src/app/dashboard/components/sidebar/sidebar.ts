@@ -10,14 +10,13 @@ import { NgClass } from '@angular/common';
     RouterModule,
     NgClass,
   ],
-  templateUrl: './sidebar.html',
-  styleUrl: './sidebar.scss',
+  templateUrl: './sidebar.html'
 })
 export class Sidebar {
 
-   private elementRef = inject(ElementRef);
-  private sidebarService = inject(SidebarMenu);
-  private router = inject(Router);
+  private readonly elementRef = inject(ElementRef);
+  private readonly sidebarService = inject(SidebarMenu);
+  private readonly router = inject(Router);
 
 
   public menuItems = computed(() => this.sidebarService.menu())

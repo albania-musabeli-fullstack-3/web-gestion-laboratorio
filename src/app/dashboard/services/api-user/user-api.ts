@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -7,9 +7,9 @@ import { Observable } from 'rxjs';
 })
 export class UserApi {
 
-  constructor(private http: HttpClient){}
+  private readonly http = inject(HttpClient);
 
-  private urlBaseAPI = 'http://localhost:8080/api';
+  private readonly urlBaseAPI = 'http://localhost:8080/api';
 
 
   updateUser(user: any): Observable<any>{

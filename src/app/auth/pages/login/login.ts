@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { AuthApi } from '../../services/auth-api';
@@ -14,16 +14,15 @@ import { AlertService } from '../../../shared/services/alert-service';
     FormsModule,
     ReactiveFormsModule,
     RouterLink
-],
-  templateUrl: './login.html',
-  styleUrl: './login.scss',
+  ],
+  templateUrl: './login.html'
 })
 export class Login {
 
-  private fb = inject(FormBuilder);
-  private authService = inject(AuthApi);
-  private router = inject(Router);
-  private alertSrv = inject(AlertService);
+  private readonly fb = inject(FormBuilder);
+  private readonly authService = inject(AuthApi);
+  private readonly router = inject(Router);
+  private readonly alertSrv = inject(AlertService);
 
 
   // formulario login
@@ -36,8 +35,14 @@ export class Login {
   // botón
   login() {
     console.log(this.formLogin.value);
+    if (this.formLogin.invalid) {
+      return
+    }
 
-    this.authService.login(this.formLogin.controls.email.value!, this.formLogin.controls.password.value!).subscribe({
+    const email = this.formLogin.controls.email.value as string;
+    const password = this.formLogin.controls.password.value as string;
+
+    this.authService.login(email, password).subscribe({
       next: (res) => {
         console.log(res);
 

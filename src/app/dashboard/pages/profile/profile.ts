@@ -18,17 +18,16 @@ import { AlertService } from '../../../shared/services/alert-service';
     MatInputModule,
     MatIconModule,
   ],
-  templateUrl: './profile.html',
-  styleUrl: './profile.scss',
+  templateUrl: './profile.html'
 })
 export default class Profile implements OnInit {
 
-  private apiAuth = inject(AuthApi);
-  private apiUser = inject(UserApi);
-  private storageService = inject(UserStorage);
-  private alert = inject(AlertService);
+  private readonly apiAuth = inject(AuthApi);
+  private readonly apiUser = inject(UserApi);
+  private readonly storageService = inject(UserStorage);
+  private readonly alert = inject(AlertService);
 
-  private fb = inject(FormBuilder);
+  private readonly fb = inject(FormBuilder);
 
 
 
@@ -84,7 +83,7 @@ export default class Profile implements OnInit {
         if (Array.isArray(error.error.errors)) {
 
           this.alert.handlerAlerta('Advertencia', error.error.errors[0].message, 'warning')
-          this.getUser(this.formProfile.controls.correo.value!)
+          this.getUser(this.formProfile.controls.correo.value ?? '')
 
         }
 

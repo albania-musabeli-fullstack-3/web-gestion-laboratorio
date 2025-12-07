@@ -10,8 +10,7 @@ import { RouterOutlet } from '@angular/router';
     Sidebar,
     RouterOutlet,
   ],
-  templateUrl: './dashboard-layout.html',
-  styleUrl: './dashboard-layout.scss',
+  templateUrl: './dashboard-layout.html'
 })
 export class DashboardLayout {
 

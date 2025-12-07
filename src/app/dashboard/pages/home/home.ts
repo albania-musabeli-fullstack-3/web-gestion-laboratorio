@@ -24,18 +24,24 @@ export default class Home implements OnInit {
   nombre = signal<string>('');
   programas = signal<Submenu[]>([]);
 
-  private userStorage = inject(UserStorage);
-  private menuService = inject(SidebarMenu);
-  private router = inject(Router);
+  private readonly userStorage = inject(UserStorage);
+  private readonly menuService = inject(SidebarMenu);
+  private readonly router = inject(Router);
 
 
   ngOnInit(): void {
+    const primerMenu = this.menuService.menu()[0];
+
     this.actualizarFechaHora();
     setInterval(() => this.actualizarFechaHora(), 1000);
 
     this.nombre.set(this.userStorage.userLoginComp()?.nombre || '')
 
-    this.programas.set(this.menuService.menu()[0].submenu!)
+    if (primerMenu) {
+      this.programas.set(primerMenu.submenu ?? [])
+    } else {
+      this.programas.set([]);
+    }
   }
 
 

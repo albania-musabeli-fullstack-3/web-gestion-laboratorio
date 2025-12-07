@@ -6,7 +6,7 @@ import { User } from '../../interfaces/user.interface';
 })
 export class UserStorage {
 
-  private userLogin  = signal<User | null>(null);
+  private readonly userLogin  = signal<User | null>(null);
 
   public userLoginComp = computed(() => this.userLogin());
 

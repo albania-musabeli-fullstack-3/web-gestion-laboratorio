@@ -17,14 +17,13 @@ import { RouterLink } from "@angular/router";
     MatIconModule,
     RouterLink,
 ],
-  templateUrl: './recovery-password.html',
-  styleUrl: './recovery-password.scss',
+  templateUrl: './recovery-password.html'
 })
 export default class RecoveryPassword {
 
-  private fb = inject(FormBuilder);
-  private authService = inject(AuthApi);
-  private alertSrv = inject(AlertService);
+  private readonly fb = inject(FormBuilder);
+  private readonly authService = inject(AuthApi);
+  private readonly alertSrv = inject(AlertService);
 
   public formRecovery = this.fb.group({
     email: ['', [Validators.required, Validators.email]]
@@ -32,7 +31,9 @@ export default class RecoveryPassword {
 
 
   recoveryPassword(){
-    this.authService.recoveryUserPassword(this.formRecovery.controls.email.value!).subscribe({
+    const email = this.formRecovery.controls.email.value as string;
+
+    this.authService.recoveryUserPassword(email).subscribe({
       next: (res) => {
         console.log(res);
         this.alertSrv.handlerAlerta('Datos recuperados', `Su contraseña es: ${ res.password }`, 'success')
