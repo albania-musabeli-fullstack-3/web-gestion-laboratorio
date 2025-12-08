@@ -1,59 +1,56 @@
 # GestionLab
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.9.
+Proyecto desarrollado con Angular versión 20.3.9. y standalone components para la **gestión de laboratorios y resultados de análisis de laboratorios.**
 
-## Development server
+## Funcionalidades del Sitio web
 
-To start a local development server, run:
+- Creación de cuenta de usuario
+- Inicio y cierre de sesión
+- Recuperar contraseña
+- Ver y editar perfil
+- Agregar, editar y eliminar laboratorio
+- Agregar, editar y eliminar resultado de análisis
 
-```bash
-ng serve
+## Dependencias
+
+- Angular Material
+- Bootstrap 5
+- Luxon
+- Sweet Alert
+- Jasmine
+- Karma (coverage)
+
+
+## Ejecutar el proyecto
+
+``` bash
+npm run start
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Revisión de test unitarios y cobertura
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+``` bash
+npm run test --code-coverage
 ```
+<img width="1913" height="969" alt="FS3_gestionlab_coverage" src="https://github.com/user-attachments/assets/2250b519-4ce6-4402-b8a8-ea5b7035a84c" />
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
 
-```bash
-ng generate --help
-```
+## SonarQube
 
-## Building
+Se utilizó sonarqube para revisión de código estático utizando su versión web conectado con el repositorio de Github.
 
-To build the project run:
+<img width="1910" height="969" alt="FS3_gestionlab_sonar" src="https://github.com/user-attachments/assets/8bed4bb9-658a-4e5f-a0ca-defd842c81a5" />
 
-```bash
-ng build
-```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## Capturas de pantalla sitio web
 
-## Running unit tests
+<img width="1913" height="969" alt="FS3_gestionlab_crearcuenta" src="https://github.com/user-attachments/assets/fe0daee3-6b8c-44dc-9ef0-e30114b3b472" />
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+<img width="1913" height="969" alt="FS3_front_recuppass1" src="https://github.com/user-attachments/assets/24aae5da-1c36-4e30-98f2-10cdc1e54ad5" />
+<img width="1913" height="969" alt="FS3_front_recuppass2" src="https://github.com/user-attachments/assets/549f5943-6398-497a-a64b-4ba31a4ff302" />
+<img width="1913" height="969" alt="FS3_front_gestionlab1" src="https://github.com/user-attachments/assets/7d8f0e98-2c0b-42e4-b944-24a0eb42e5d5" />
+<img width="1913" height="969" alt="FS3_front_gestionlab2" src="https://github.com/user-attachments/assets/64696cf3-6aa6-4491-bea7-a6bacfc13363" />
+<img width="1913" height="969" alt="FS3_front_gestionlab3" src="https://github.com/user-attachments/assets/2597309a-5d10-4b7f-95e1-694c1236170f" />
+<img width="1913" height="969" alt="FS3_front_gestionlab4" src="https://github.com/user-attachments/assets/d660598d-f946-4222-9ded-b19ebc1d9816" />
+<img width="1913" height="969" alt="FS3_front_gestionlab5" src="https://github.com/user-attachments/assets/1adbeb3f-4946-442a-8322-39c5068f7ec1" />
 
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
