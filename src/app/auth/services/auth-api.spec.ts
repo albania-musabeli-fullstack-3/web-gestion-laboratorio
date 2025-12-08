@@ -14,7 +14,7 @@ describe('AuthApi Service', () => {
     TestBed.configureTestingModule({
       providers: [
         AuthApi,
-        provideHttpClient(withInterceptorsFromDi()), // Agregado para proveer HttpClient correctamente
+        provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting()
       ]
     });
@@ -23,12 +23,14 @@ describe('AuthApi Service', () => {
   });
 
   afterEach(() => {
-    httpMock.verify(); // Verifica que no haya requests pendientes
+    httpMock.verify();
   });
+
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
 
   it('should perform login POST request correctly', () => {
     const correo = 'test@correo.com';
@@ -46,12 +48,13 @@ describe('AuthApi Service', () => {
     req.flush(mockResponse);
   });
 
+
   it('should perform register POST request correctly', () => {
     const mockRequest: UserRequest = {
       correo: 'test@correo.com',
       password: 'Test123$',
       nombre: 'Test User',
-      roles: [1] // Ejemplo de roles
+      roles: [1]
     };
     const mockResponse = { id: 1 };
 
@@ -66,6 +69,7 @@ describe('AuthApi Service', () => {
     req.flush(mockResponse);
   });
 
+  
   it('should perform recoveryUserPassword GET request correctly', () => {
     const correo = 'test@correo.com';
     const mockResponse = { password: 'RecoveredPass' };

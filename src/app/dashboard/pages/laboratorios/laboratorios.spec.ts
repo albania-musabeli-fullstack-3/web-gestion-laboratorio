@@ -26,7 +26,6 @@ describe('Laboratorios', () => {
     alertSpy = jasmine.createSpyObj<AlertService>('AlertService', ['confirmar', 'handlerAlerta']);
     dialogSpy = jasmine.createSpyObj<MatDialog>('MatDialog', ['open']);
 
-    // Valores por defecto
     apiSpy.getAllLaboratorios.and.returnValue(of([...mockLaboratorios]));
     alertSpy.confirmar.and.returnValue(Promise.resolve(true));
 
@@ -44,10 +43,7 @@ describe('Laboratorios', () => {
 
     fixture = TestBed.createComponent(Laboratorios);
     component = fixture.componentInstance;
-
-    // Simulamos que @ViewChild(MatPaginator) ya está resuelto
     component.paginator = { pageSize: 10, pageIndex: 0, length: 0 } as MatPaginator;
-
     fixture.detectChanges();
   });
 
@@ -55,7 +51,7 @@ describe('Laboratorios', () => {
     expect(component).toBeTruthy();
   });
 
-  // Carga inicial
+  
   it('should load laboratorios on init and sort by id descending', fakeAsync(() => {
     component.ngOnInit();
     tick();
@@ -63,6 +59,7 @@ describe('Laboratorios', () => {
     expect(component.dataSource.data[0].id).toBe(3);
     expect(component.dataSource.paginator).toBe(component.paginator);
   }));
+
 
   it('should log error when getAllLaboratorios fails', fakeAsync(() => {
     spyOn(console, 'log');
@@ -74,7 +71,7 @@ describe('Laboratorios', () => {
     expect(console.log).toHaveBeenCalledWith('Network error');
   }));
 
-  // Modal: abrir
+
   it('should open modal to add new laboratorio', () => {
     component.openModalAgregarEditarLab();
     expect(dialogSpy.open).toHaveBeenCalledWith(GestionLab, jasmine.objectContaining({
@@ -86,6 +83,7 @@ describe('Laboratorios', () => {
     }));
   });
 
+
   it('should open modal to edit existing laboratorio', () => {
     const lab = mockLaboratorios[0];
     component.openModalAgregarEditarLab(lab, true);
@@ -93,8 +91,8 @@ describe('Laboratorios', () => {
       data: { laboratorio: lab, editar: true }
     }));
   });
+  
 
-  // Modal: afterClosed() → 3 casos críticos para 100% coverage
   it('should refresh list when modal closes with status true', fakeAsync(() => {
     spyOn(component, 'getAllLaboratorios');
     dialogSpy.open.and.returnValue({ afterClosed: () => of({ status: true }) } as any);
@@ -104,6 +102,7 @@ describe('Laboratorios', () => {
 
     expect(component.getAllLaboratorios).toHaveBeenCalledTimes(1);
   }));
+
 
   it('should NOT refresh when modal closes with status false', fakeAsync(() => {
     spyOn(component, 'getAllLaboratorios');
@@ -115,6 +114,7 @@ describe('Laboratorios', () => {
     expect(component.getAllLaboratorios).not.toHaveBeenCalled();
   }));
 
+
   it('should NOT refresh when modal is dismissed (result is undefined)', fakeAsync(() => {
     spyOn(component, 'getAllLaboratorios');
     dialogSpy.open.and.returnValue({ afterClosed: () => of(undefined) } as any);
@@ -125,19 +125,20 @@ describe('Laboratorios', () => {
     expect(component.getAllLaboratorios).not.toHaveBeenCalled();
   }));
 
-  // Eliminación
+
   it('should delete laboratorio when confirmed', fakeAsync(() => {
     apiSpy.eliminarLaboratorio.and.returnValue(of({}));
     const lab = { ...mockLaboratorios[0], id: 5 };
 
     component.eliminarLaboratorio(lab);
-    tick(); // confirmar
-    tick(); // eliminar
+    tick();
+    tick();
 
     expect(apiSpy.eliminarLaboratorio).toHaveBeenCalledWith(5);
     expect(alertSpy.handlerAlerta).toHaveBeenCalledWith('Eliminado', 'El laboratorio ha sido eliminado', 'success');
     expect(component.getAllLaboratorios).toHaveBeenCalled();
   }));
+
 
   it('should show warning if deletion fails due to associated results (409)', fakeAsync(() => {
     apiSpy.eliminarLaboratorio.and.returnValue(throwError(() => ({ status: 409 })));
@@ -148,6 +149,7 @@ describe('Laboratorios', () => {
 
     expect(alertSpy.handlerAlerta).toHaveBeenCalledWith('Precaución', 'Este laboratorio tiene resultados asociados', 'warning');
   }));
+
 
   it('should show warning and log error on generic deletion error', fakeAsync(() => {
     spyOn(console, 'error');
@@ -161,6 +163,7 @@ describe('Laboratorios', () => {
     expect(alertSpy.handlerAlerta).toHaveBeenCalledWith('Precaución', 'Este laboratorio tiene resultados asociados', 'warning');
   }));
 
+
   it('should not delete if user cancels confirmation', fakeAsync(() => {
     alertSpy.confirmar.and.returnValue(Promise.resolve(false));
 
@@ -169,6 +172,7 @@ describe('Laboratorios', () => {
 
     expect(apiSpy.eliminarLaboratorio).not.toHaveBeenCalled();
   }));
+
 
   it('should not delete if laboratorio has no id', fakeAsync(() => {
     const labSinId = { nombre: 'Sin ID' } as any;

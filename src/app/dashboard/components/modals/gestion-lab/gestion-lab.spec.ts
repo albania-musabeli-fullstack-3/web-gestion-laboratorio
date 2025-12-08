@@ -8,7 +8,7 @@ import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { ApiLaboratorio } from '../../../services/api-laboratorio/api-laboratorio';
 import { AlertService } from '../../../../shared/services/alert-service';
 import { of, throwError } from 'rxjs';
-import { regexPattern } from '../../../../shared/utils/validations/regex.validation';
+
 
 describe('GestionLab Component', () => {
   let component: GestionLab;
@@ -19,7 +19,7 @@ describe('GestionLab Component', () => {
   const mockDataAgregar = { editar: false, laboratorio: null };
   const mockDataEditar = { editar: true, laboratorio: { id: 1, nombre: 'Lab1', direccion: 'Dir1', telefono: '912345678', correo: 'lab@correo.com', especialidad: 'Esp1' } };
 
-  // Spies comunes
+
   beforeEach(() => {
     laboratorioSrvSpy = jasmine.createSpyObj<ApiLaboratorio>('ApiLaboratorio', ['createLaboratorio', 'editarLaboratorio']);
     alertSrvSpy = jasmine.createSpyObj<AlertService>('AlertService', ['handlerAlerta']);
@@ -56,11 +56,13 @@ describe('GestionLab Component', () => {
       expect(component).toBeTruthy();
     });
 
+
     it('should set title and button for agregar mode', () => {
       component.ngOnInit();
       expect(component.titulo).toBe('Agregar Laboratorio');
       expect(component.nombreBoton).toBe('Agregar Laboratorio');
     });
+
 
     it('should initialize form with empty values in agregar mode', () => {
       const form = component.formLaboratorio;
@@ -69,28 +71,24 @@ describe('GestionLab Component', () => {
       expect(form.controls['telefono'].value).toBe('');
       expect(form.controls['correo'].value).toBe('');
       expect(form.controls['especialidad'].value).toBe('');
-
-      // Verificar validadores required (estos funcionan con hasValidator ya que son referencias singleton)
       expect(form.controls['nombre'].hasValidator(Validators.required)).toBeTrue();
       expect(form.controls['direccion'].hasValidator(Validators.required)).toBeTrue();
       expect(form.controls['telefono'].hasValidator(Validators.required)).toBeTrue();
       expect(form.controls['correo'].hasValidator(Validators.required)).toBeTrue();
       expect(form.controls['especialidad'].hasValidator(Validators.required)).toBeTrue();
 
-      // Verificar validador pattern para telefono (usando valores invalid/valid en lugar de hasValidator)
-      form.patchValue({ telefono: 'abc' }); // Valor que no coincide con pattern
+      form.patchValue({ telefono: 'abc' });
       expect(form.controls['telefono'].invalid).toBeTrue();
       expect(form.controls['telefono'].errors?.['pattern']).toBeTruthy();
-      form.patchValue({ telefono: '912345678' }); // Valor válido (ajusta si tu regex es diferente)
+      form.patchValue({ telefono: '912345678' });
       expect(form.controls['telefono'].errors).toBeNull();
-
-      // Verificar validador pattern para correo (usando valores invalid/valid en lugar de hasValidator)
-      form.patchValue({ correo: 'invalid' }); // Valor que no coincide con pattern email
+      form.patchValue({ correo: 'invalid' });
       expect(form.controls['correo'].invalid).toBeTrue();
       expect(form.controls['correo'].errors?.['pattern']).toBeTruthy();
-      form.patchValue({ correo: 'test@correo.com' }); // Valor válido
+      form.patchValue({ correo: 'test@correo.com' });
       expect(form.controls['correo'].errors).toBeNull();
     });
+
 
     it('should alert if nombre < 5 chars', () => {
       component.formLaboratorio.setValue({ nombre: 'Lab', direccion: 'Dir12345', telefono: '912345678', correo: 'test@correo.com', especialidad: 'Esp12345' });
@@ -99,12 +97,14 @@ describe('GestionLab Component', () => {
       expect(laboratorioSrvSpy.createLaboratorio).not.toHaveBeenCalled();
     });
 
+
     it('should alert if direccion < 5 chars', () => {
       component.formLaboratorio.setValue({ nombre: 'Lab12345', direccion: 'Dir', telefono: '912345678', correo: 'test@correo.com', especialidad: 'Esp12345' });
       component.agregarEditarLab();
       expect(alertSrvSpy.handlerAlerta).toHaveBeenCalledWith('Advertencia', 'La dirección debe tener al menos 5 caracteres', 'warning');
       expect(laboratorioSrvSpy.createLaboratorio).not.toHaveBeenCalled();
     });
+
 
     it('should alert if telefono < 5 chars', () => {
       component.formLaboratorio.setValue({ nombre: 'Lab12345', direccion: 'Dir12345', telefono: '1234', correo: 'test@correo.com', especialidad: 'Esp12345' });
@@ -113,12 +113,14 @@ describe('GestionLab Component', () => {
       expect(laboratorioSrvSpy.createLaboratorio).not.toHaveBeenCalled();
     });
 
+
     it('should alert if correo < 5 chars', () => {
       component.formLaboratorio.setValue({ nombre: 'Lab12345', direccion: 'Dir12345', telefono: '912345678', correo: 'test', especialidad: 'Esp12345' });
       component.agregarEditarLab();
       expect(alertSrvSpy.handlerAlerta).toHaveBeenCalledWith('Advertencia', 'El correo debe tener al menos 5 caracteres', 'warning');
       expect(laboratorioSrvSpy.createLaboratorio).not.toHaveBeenCalled();
     });
+
 
     it('should alert if especialidad < 5 chars', () => {
       component.formLaboratorio.setValue({ nombre: 'Lab12345', direccion: 'Dir12345', telefono: '912345678', correo: 'test@correo.com', especialidad: 'Esp' });
@@ -127,11 +129,13 @@ describe('GestionLab Component', () => {
       expect(laboratorioSrvSpy.createLaboratorio).not.toHaveBeenCalled();
     });
 
+
     it('should not call createLaboratorio if form invalid (e.g., bad pattern) in agregar mode', () => {
       component.formLaboratorio.setValue({ nombre: 'Lab12345', direccion: 'Dir12345', telefono: 'invalidtel', correo: 'test@correo.com', especialidad: 'Esp12345' }); // length ok, pattern bad
       component.agregarEditarLab();
       expect(laboratorioSrvSpy.createLaboratorio).not.toHaveBeenCalled();
     });
+
 
     it('should call createLaboratorio, handle success in agregar mode with valid form', fakeAsync(() => {
       spyOn(console, 'log');
@@ -151,6 +155,7 @@ describe('GestionLab Component', () => {
       expect(dialogRefSpy.close).toHaveBeenCalledWith({ status: true });
       expect(alertSrvSpy.handlerAlerta).toHaveBeenCalledWith('Solicitud Exitosa', 'Laboratorio Agregado', 'success');
     }));
+
 
     it('should call createLaboratorio, handle error in agregar mode with valid form', fakeAsync(() => {
       spyOn(console, 'log');
@@ -172,6 +177,7 @@ describe('GestionLab Component', () => {
     }));
   });
 
+
   describe('in editar mode', () => {
     beforeEach(configureTestBed(mockDataEditar));
 
@@ -180,6 +186,7 @@ describe('GestionLab Component', () => {
       expect(component.titulo).toBe('Editar Laboratorio');
       expect(component.nombreBoton).toBe('Editar Laboratorio');
     });
+
 
     it('should initialize form with laboratorio values in editar mode', () => {
       const form = component.formLaboratorio;
@@ -190,11 +197,13 @@ describe('GestionLab Component', () => {
       expect(form.controls['especialidad'].value).toBe('Esp1');
     });
 
+
     it('should not call editarLaboratorio if form invalid (e.g., bad pattern) in editar mode', () => {
       component.formLaboratorio.setValue({ nombre: 'Lab12345', direccion: 'Dir12345', telefono: 'invalidtel', correo: 'test@correo.com', especialidad: 'Esp12345' }); // length ok, pattern bad
       component.agregarEditarLab();
       expect(laboratorioSrvSpy.editarLaboratorio).not.toHaveBeenCalled();
     });
+
 
     it('should call editarLaboratorio, handle success in editar mode with valid form', fakeAsync(() => {
       const mockResponse = { id: 1 };
@@ -213,6 +222,7 @@ describe('GestionLab Component', () => {
       expect(alertSrvSpy.handlerAlerta).toHaveBeenCalledWith('Editar Laboratorio', 'Datos actualizados', 'success');
     }));
 
+    
     it('should call editarLaboratorio, handle error in editar mode with valid form', fakeAsync(() => {
       const mockError = new Error('Error');
       laboratorioSrvSpy.editarLaboratorio.and.returnValue(throwError(() => mockError));

@@ -77,7 +77,7 @@ export default class Resultados implements OnInit {
 
       },
       error: (error) => {
-        console.log(error);
+        console.log('Error', error);
 
       }
     })
@@ -100,7 +100,7 @@ export default class Resultados implements OnInit {
           this.getAllResultados();
         },
         error: (error) => {
-          console.log(error);
+          console.log('Error', error);
         }
       })
     }

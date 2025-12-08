@@ -31,10 +31,7 @@ describe('UserStorage', () => {
   });
 
   it('should load user from localStorage when exists (covers if branch)', () => {
-    // Guardamos el usuario
     localStorage.setItem('usuario', JSON.stringify(mockUser));
-
-    // Forzamos una NUEVA instancia del servicio
     const service = new UserStorage();
 
     expect(service.userLoginComp()).toEqual(mockUser);
@@ -51,7 +48,7 @@ describe('UserStorage', () => {
     localStorage.setItem('usuario', 'esto-no-es-json-invalido');
 
     expect(() => {
-      new UserStorage(); // Aquí se ejecuta JSON.parse y debe fallar silenciosamente
+      new UserStorage();
     }).not.toThrow();
 
     const service = new UserStorage();

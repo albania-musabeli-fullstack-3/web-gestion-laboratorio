@@ -1,11 +1,11 @@
 import { TestBed } from '@angular/core/testing';
-import { ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
 
 import { authGuard } from './auth-guard';
 
 describe('authGuard', () => {
- 
-  
+
+
   let routerSpy: jasmine.SpyObj<Router>;
   let route: ActivatedRouteSnapshot;
   let state: RouterStateSnapshot;
@@ -46,16 +46,4 @@ describe('authGuard', () => {
       { queryParams: { returnUrl: '/dashboard' } }
     );
   });
-
-
-  // const executeGuard: CanActivateFn = (...guardParameters) => 
-  //     TestBed.runInInjectionContext(() => authGuard(...guardParameters));
-
-  // beforeEach(() => {
-  //   TestBed.configureTestingModule({});
-  // });
-
-  // it('should be created', () => {
-  //   expect(executeGuard).toBeTruthy();
-  // });
 });

@@ -16,24 +16,23 @@ describe('Login', () => {
   let alertServiceSpy: jasmine.SpyObj<AlertService>;
 
   beforeEach(async () => {
-    // Crear spies para los servicios inyectados (sin mockear Router inicialmente)
     authServiceSpy = jasmine.createSpyObj<AuthApi>('AuthApi', ['login']);
     alertServiceSpy = jasmine.createSpyObj<AlertService>('AlertService', ['handlerAlerta']);
 
     await TestBed.configureTestingModule({
       imports: [
-        Login, // Componente standalone
+        Login,
         ReactiveFormsModule,
         MatFormFieldModule,
         MatInputModule,
-        RouterLink // Para el template
+        RouterLink
       ],
       providers: [
         FormBuilder,
         { provide: AuthApi, useValue: authServiceSpy },
         { provide: AlertService, useValue: alertServiceSpy },
-        provideRouter([]), // Provee Router y ActivatedRoute
-        provideLocationMocks() // Provee mocks para Location y LocationStrategy (reemplazo de RouterTestingModule)
+        provideRouter([]),
+        provideLocationMocks()
       ]
     }).compileComponents();
 
@@ -53,8 +52,6 @@ describe('Login', () => {
     expect(form.controls['email'].valid).toBeTrue();
     expect(form.controls['password'].value).toBe('Password123$');
     expect(form.controls['password'].valid).toBeTrue();
-
-    // Verificar validadores
     expect(form.controls['email'].hasValidator(Validators.required)).toBeTrue();
     expect(form.controls['email'].hasValidator(Validators.email)).toBeTrue();
     expect(form.controls['password'].hasValidator(Validators.required)).toBeTrue();

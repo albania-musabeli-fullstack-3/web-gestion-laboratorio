@@ -72,7 +72,6 @@ describe('AlertService', () => {
     });
 
     it('should resolve to true when user confirms', async () => {
-      // Simular que Swal devuelve una promesa que resuelve con isConfirmed: true
       const mockResult: SweetAlertResult = { isConfirmed: true } as SweetAlertResult;
       swalFireSpy.and.returnValue(Promise.resolve(mockResult));
 
@@ -81,7 +80,6 @@ describe('AlertService', () => {
     });
 
     it('should resolve to false when user cancels or dismisses', async () => {
-      // Simular cancelación
       const mockResult: SweetAlertResult = { isConfirmed: false } as SweetAlertResult;
       swalFireSpy.and.returnValue(Promise.resolve(mockResult));
 
@@ -90,7 +88,6 @@ describe('AlertService', () => {
     });
 
     it('should resolve to false when dialog is dismissed (e.g. ESC key)', async () => {
-      // Simular dismiss
       const mockResult: SweetAlertResult = { isDismissed: true } as SweetAlertResult;
       swalFireSpy.and.returnValue(Promise.resolve(mockResult));
 

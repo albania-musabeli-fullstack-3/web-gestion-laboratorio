@@ -22,13 +22,13 @@ describe('GestionResult Component', () => {
   const mockLabs = [
     { id: 2, nombre: 'Lab A', direccion: '', telefono: '', correo: '', especialidad: '' },
     { id: 1, nombre: 'Lab B', direccion: '', telefono: '', correo: '', especialidad: '' }
-  ]; // Unsorted, expect sorted as Lab A, Lab B
+  ];
   const mockDataAgregar = { editar: false, resultado: null };
   const mockDataEditar = {
     editar: true,
     resultado: {
       id: 1,
-      fechaAnalisis: '07/12/2025', // dd/MM/yyyy
+      fechaAnalisis: '07/12/2025',
       nombreAnalisis: 'Analisis1',
       resultado: 'Resultado1',
       observaciones: 'Obs1',
@@ -37,7 +37,6 @@ describe('GestionResult Component', () => {
     }
   };
 
-  // Spies comunes
   beforeEach(() => {
     laboratorioSrvSpy = jasmine.createSpyObj<ApiLaboratorio>('ApiLaboratorio', ['getAllLaboratorios', 'createResultado', 'editarResultado']);
     alertSrvSpy = jasmine.createSpyObj<AlertService>('AlertService', ['handlerAlerta']);
@@ -77,6 +76,7 @@ describe('GestionResult Component', () => {
     it('should create the component', () => {
       expect(component).toBeTruthy();
     });
+    
 
     it('should set title and button for agregar mode', () => {
       component.ngOnInit();
@@ -84,15 +84,17 @@ describe('GestionResult Component', () => {
       expect(component.nombreBoton).toBe('Agregar Resultado');
     });
 
+
     it('should load and sort laboratorios on init', fakeAsync(() => {
       component.ngOnInit();
       tick();
       expect(laboratorioSrvSpy.getAllLaboratorios).toHaveBeenCalled();
       expect(component.laboratorios()).toEqual([
-        { id: 2, nombre: 'Lab A', direccion: '', telefono: '', correo: '', especialidad: '' }, // Sorted alphabetically
+        { id: 2, nombre: 'Lab A', direccion: '', telefono: '', correo: '', especialidad: '' },
         { id: 1, nombre: 'Lab B', direccion: '', telefono: '', correo: '', especialidad: '' }
       ]);
     }));
+
 
     it('should handle error when loading laboratorios', () => {
       const mockError = new Error('Test error');
@@ -103,6 +105,7 @@ describe('GestionResult Component', () => {
       expect(component.laboratorios()).toEqual([]);
     });
 
+
     it('should initialize form with empty values in agregar mode', () => {
       const form = component.formResultado;
       expect(form.controls['fechaAnalisis'].value).toBeNull();
@@ -110,14 +113,13 @@ describe('GestionResult Component', () => {
       expect(form.controls['resultado'].value).toBe('');
       expect(form.controls['observaciones'].value).toBe('');
       expect(form.controls['idLaboratorio'].value).toBeNull();
-
-      // Verificar validadores required
       expect(form.controls['fechaAnalisis'].hasValidator(Validators.required)).toBeTrue();
       expect(form.controls['nombreAnalisis'].hasValidator(Validators.required)).toBeTrue();
       expect(form.controls['resultado'].hasValidator(Validators.required)).toBeTrue();
       expect(form.controls['observaciones'].hasValidator(Validators.required)).toBeTrue();
       expect(form.controls['idLaboratorio'].hasValidator(Validators.required)).toBeTrue();
     });
+
 
     it('should alert if nombreAnalisis < 3 chars', () => {
       component.formResultado.setValue({
@@ -131,6 +133,7 @@ describe('GestionResult Component', () => {
       expect(alertSrvSpy.handlerAlerta).toHaveBeenCalledWith('Advertencia', 'El nombre del análisis debe tener al menos 3 caracteres', 'warning');
       expect(laboratorioSrvSpy.createResultado).not.toHaveBeenCalled();
     });
+
 
     it('should alert if observaciones > 1000 chars', () => {
       const longObs = 'a'.repeat(1001);
@@ -146,6 +149,7 @@ describe('GestionResult Component', () => {
       expect(laboratorioSrvSpy.createResultado).not.toHaveBeenCalled();
     });
 
+
     it('should alert if resultado < 3 chars', () => {
       component.formResultado.setValue({
         fechaAnalisis: new Date(),
@@ -159,6 +163,7 @@ describe('GestionResult Component', () => {
       expect(laboratorioSrvSpy.createResultado).not.toHaveBeenCalled();
     });
 
+
     it('should not call createResultado if form invalid', () => {
       component.formResultado.setValue({
         fechaAnalisis: null,
@@ -171,6 +176,7 @@ describe('GestionResult Component', () => {
       expect(laboratorioSrvSpy.createResultado).not.toHaveBeenCalled();
     });
 
+
     it('should call createResultado, handle success in agregar mode with valid form', fakeAsync(() => {
       spyOn(console, 'log');
       const mockResponse = {
@@ -182,7 +188,7 @@ describe('GestionResult Component', () => {
         laboratorio: { id: 1, nombre: 'Lab B', direccion: '', telefono: '', correo: '', especialidad: '' }
       };
       laboratorioSrvSpy.createResultado.and.returnValue(of(mockResponse));
-      const testDate = new Date('2025-12-07T12:00:00'); // JS Date
+      const testDate = new Date('2025-12-07T12:00:00');
       const expectedFormattedDate = DateTime.fromJSDate(testDate).toFormat("yyyy-MM-dd'T'HH:mm:ss");
       component.formResultado.setValue({
         fechaAnalisis: testDate,
@@ -204,6 +210,7 @@ describe('GestionResult Component', () => {
       expect(dialogRefSpy.close).toHaveBeenCalledWith({ status: true });
       expect(alertSrvSpy.handlerAlerta).toHaveBeenCalledWith('Nuevo resultado agregado', '', 'success');
     }));
+
 
     it('should call createResultado, handle error in agregar mode with valid form', fakeAsync(() => {
       spyOn(console, 'log');
@@ -233,6 +240,7 @@ describe('GestionResult Component', () => {
     }));
   });
 
+
   describe('in editar mode', () => {
     beforeEach(configureTestBed(mockDataEditar));
 
@@ -241,6 +249,7 @@ describe('GestionResult Component', () => {
       expect(component.titulo).toBe('Editar Resultado');
       expect(component.nombreBoton).toBe('Editar Resultado');
     });
+
 
     it('should load and sort laboratorios on init', fakeAsync(() => {
       component.ngOnInit();
@@ -252,8 +261,9 @@ describe('GestionResult Component', () => {
       ]);
     }));
 
+
     it('should initialize form with resultado values in editar mode', () => {
-      spyOn(console, 'log'); // Para capturar el console.log en cargarFormularioEdit
+      spyOn(console, 'log');
       component.ngOnInit();
       const form = component.formResultado;
       const expectedDate = DateTime.fromFormat('07/12/2025', 'dd/MM/yyyy').toJSDate();
@@ -263,6 +273,7 @@ describe('GestionResult Component', () => {
       expect(form.controls['resultado'].value).toBe('Resultado1');
       expect(form.controls['observaciones'].value).toBe('Obs1');
     });
+
 
     it('should not call editarResultado if form invalid', () => {
       component.formResultado.setValue({
@@ -275,6 +286,7 @@ describe('GestionResult Component', () => {
       component.agregarEditarResultado();
       expect(laboratorioSrvSpy.editarResultado).not.toHaveBeenCalled();
     });
+
 
     it('should call editarResultado, handle success in editar mode with valid form', fakeAsync(() => {
       const mockResponse = {
@@ -308,6 +320,7 @@ describe('GestionResult Component', () => {
       expect(alertSrvSpy.handlerAlerta).toHaveBeenCalledWith('Editar Laboratorio', 'Datos Actualizados', 'success');
     }));
 
+    
     it('should call editarResultado, handle error in editar mode with valid form', fakeAsync(() => {
       spyOn(console, 'log');
       const mockError = new Error('Error');

@@ -5,7 +5,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { provideRouter, Router } from '@angular/router';
 import { AlertService } from '../../../shared/services/alert-service';
-import { RouterTestingModule } from '@angular/router/testing';
+
+
 describe('Navbar', () => {
   let component: Navbar;
   let fixture: ComponentFixture<Navbar>;
@@ -36,6 +37,7 @@ describe('Navbar', () => {
     expect(component).toBeTruthy();
   });
 
+  
   describe('logout', () => {
     it('should call confirmar with correct parameters', fakeAsync(() => {
       alertSrvSpy.confirmar.and.returnValue(Promise.resolve(false));
@@ -49,6 +51,7 @@ describe('Navbar', () => {
       );
     }));
 
+
     it('should not logout if not confirmed', fakeAsync(() => {
       spyOn(localStorage, 'removeItem');
       alertSrvSpy.confirmar.and.returnValue(Promise.resolve(false));
@@ -58,6 +61,7 @@ describe('Navbar', () => {
       expect(alertSrvSpy.handlerAlerta).not.toHaveBeenCalled();
       expect(routerSpy.navigate).not.toHaveBeenCalled();
     }));
+
 
     it('should logout if confirmed', fakeAsync(() => {
       spyOn(localStorage, 'removeItem');

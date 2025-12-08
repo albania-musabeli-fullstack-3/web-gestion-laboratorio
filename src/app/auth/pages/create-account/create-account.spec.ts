@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 
 import CreateAccount from './create-account';
 import { AuthApi } from '../../services/auth-api';

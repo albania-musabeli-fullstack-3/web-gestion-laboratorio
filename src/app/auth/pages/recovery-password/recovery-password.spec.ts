@@ -18,25 +18,24 @@ describe('RecoveryPassword Component', () => {
   let alertServiceSpy: jasmine.SpyObj<AlertService>;
 
   beforeEach(async () => {
-    // Crear spies para los servicios inyectados
     authServiceSpy = jasmine.createSpyObj<AuthApi>('AuthApi', ['recoveryUserPassword']);
     alertServiceSpy = jasmine.createSpyObj<AlertService>('AlertService', ['handlerAlerta']);
 
     await TestBed.configureTestingModule({
       imports: [
-        RecoveryPassword, // Componente standalone
+        RecoveryPassword,
         ReactiveFormsModule,
         MatFormFieldModule,
         MatInputModule,
         MatIconModule,
-        RouterLink // Para el template si se usa
+        RouterLink
       ],
       providers: [
         FormBuilder,
         { provide: AuthApi, useValue: authServiceSpy },
         { provide: AlertService, useValue: alertServiceSpy },
-        provideRouter([]), // Provee Router y ActivatedRoute
-        provideLocationMocks() // Provee mocks para Location y LocationStrategy
+        provideRouter([]),
+        provideLocationMocks()
       ]
     }).compileComponents();
 
@@ -53,9 +52,7 @@ describe('RecoveryPassword Component', () => {
     const form = component.formRecovery;
     expect(form).toBeDefined();
     expect(form.controls['email'].value).toBe('');
-    expect(form.controls['email'].invalid).toBeTrue(); // Default vacío es inválido
-
-    // Verificar validadores
+    expect(form.controls['email'].invalid).toBeTrue();
     expect(form.controls['email'].hasValidator(Validators.required)).toBeTrue();
     expect(form.controls['email'].hasValidator(Validators.email)).toBeTrue();
   });
@@ -65,15 +62,18 @@ describe('RecoveryPassword Component', () => {
     expect(component.formRecovery.controls['email'].invalid).toBeTrue();
   });
 
+
   it('should mark email as invalid if not a valid email', () => {
     component.formRecovery.controls['email'].setValue('invalid-email');
     expect(component.formRecovery.controls['email'].invalid).toBeTrue();
   });
 
+
   it('should mark email as valid if correct', () => {
     component.formRecovery.controls['email'].setValue('test@correo.com');
     expect(component.formRecovery.controls['email'].valid).toBeTrue();
   });
+
 
   it('should call recovery service with email and handle success', () => {
     spyOn(console, 'log');
@@ -96,6 +96,7 @@ describe('RecoveryPassword Component', () => {
     expect(component.formRecovery.reset).toHaveBeenCalled();
   });
 
+  
   it('should call recovery service with email and handle error', () => {
     spyOn(console, 'log');
     spyOn(component.formRecovery, 'reset');

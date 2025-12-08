@@ -33,9 +33,11 @@ describe('Sidebar', () => {
     fixture.detectChanges();
   });
 
+
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
 
   it('should expose menuItems from SidebarMenu service', () => {
     expect(component.menuItems()).toEqual(mockMenu());
@@ -43,6 +45,7 @@ describe('Sidebar', () => {
     expect(component.menuItems()[0].label).toBe('Dashboard');
   });
 
+  
   it('should toggle "expand" class on sidebar element when toggleSidebar() is called', () => {
     const sidebarElement = fixture.nativeElement.querySelector('#sidebar');
     expect(sidebarElement).toBeTruthy();
