@@ -51,6 +51,8 @@ Se utilizó sonarqube para revisión de código estático utizando su versión w
 <img width="1913" height="969" alt="FS3_front_gestionlab1" src="https://github.com/user-attachments/assets/7d8f0e98-2c0b-42e4-b944-24a0eb42e5d5" />
 <img width="1913" height="969" alt="FS3_front_gestionlab2" src="https://github.com/user-attachments/assets/64696cf3-6aa6-4491-bea7-a6bacfc13363" />
 <img width="1913" height="969" alt="FS3_front_gestionlab3" src="https://github.com/user-attachments/assets/2597309a-5d10-4b7f-95e1-694c1236170f" />
+<img width="1895" height="962" alt="FS3_front_agregarlab" src="https://github.com/user-attachments/assets/eae04a22-0eea-4bdb-98f4-735114093a5e" />
 <img width="1913" height="969" alt="FS3_front_gestionlab4" src="https://github.com/user-attachments/assets/d660598d-f946-4222-9ded-b19ebc1d9816" />
+<img width="1895" height="962" alt="FS3_front_agregarresult" src="https://github.com/user-attachments/assets/9ce98663-5b61-4ab6-962f-645c159b2c8b" />
 <img width="1913" height="969" alt="FS3_front_gestionlab5" src="https://github.com/user-attachments/assets/1adbeb3f-4946-442a-8322-39c5068f7ec1" />
 
