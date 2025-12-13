@@ -56,3 +56,22 @@ Se utilizó sonarqube para revisión de código estático utizando su versión w
 <img width="1895" height="962" alt="FS3_front_agregarresult" src="https://github.com/user-attachments/assets/9ce98663-5b61-4ab6-962f-645c159b2c8b" />
 <img width="1913" height="969" alt="FS3_front_gestionlab5" src="https://github.com/user-attachments/assets/1adbeb3f-4946-442a-8322-39c5068f7ec1" />
 
+## Evidencias de ejecución de microservicios en contenedores Docker
+
+### API Usuarios
+
+<img width="1920" height="1041" alt="fs3_docker_compose_api_usuarios" src="https://github.com/user-attachments/assets/8201caf7-624e-4049-b10b-eecda73d2588" />
+
+### API Laboratorio/Resultado de Análisis
+
+<img width="1920" height="1041" alt="fs3_docker_compose_api_lab" src="https://github.com/user-attachments/assets/7d851b0e-60a9-4a93-8637-26cbb40b4427" />
+
+### Servidor NGINX Gestión Laboratorio (puerto 80)
+
+<img width="1920" height="1074" alt="fs3_docker_compose_front" src="https://github.com/user-attachments/assets/d55c798b-36eb-4a05-9ee1-710825dabf27" />
+
+<img width="1920" height="1074" alt="fs3_app_angular_nginx" src="https://github.com/user-attachments/assets/5db817e9-636e-4d02-9129-7efaad1d38cb" />
+
+
+
+
