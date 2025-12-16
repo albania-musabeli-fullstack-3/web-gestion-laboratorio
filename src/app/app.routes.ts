@@ -39,6 +39,10 @@ export const routes: Routes = [
                 loadComponent: () => import('./dashboard/pages/laboratorios/laboratorios')
             },
             {
+                path: 'insumos',
+                loadComponent: () => import('./dashboard/pages/insumos/insumos')
+            },
+            {
                 path: 'perfil',
                 loadComponent: () => import('./dashboard/pages/profile/profile')
             },

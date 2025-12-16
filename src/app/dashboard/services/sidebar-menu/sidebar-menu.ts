@@ -29,6 +29,12 @@ export class SidebarMenu {
           codPrograma: 'GL002',
           nombrePrograma: 'GL002 - Resultados Laboratorio'
         },
+        {
+          label: 'Insumos',
+          link: 'insumos',
+          codPrograma: 'GL003',
+          nombrePrograma: 'GL003 - Insumos de Laboratorio'
+        }
       ]
     }
   ])
