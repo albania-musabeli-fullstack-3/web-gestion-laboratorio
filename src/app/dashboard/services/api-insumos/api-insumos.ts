@@ -11,8 +11,23 @@ export class ApiInsumos {
   private readonly urlBaseAPI = 'http://localhost:8082/api';
 
 
-  getAllInsumos(){
+  listarInsumos(){
     return this.http.get<Insumo[]>(`${this.urlBaseAPI}/insumo`);
+  }
+
+
+  eliminarInsumo(id: number){
+    return this.http.delete<Insumo>(`${this.urlBaseAPI}/insumo/${id}`);
+  }
+
+
+  crearInsumo(request: Insumo){
+    return this.http.post<Insumo>(`${this.urlBaseAPI}/insumo`, request);
+  }
+
+
+  editarInsumo(id: number, request: Insumo){
+    return this.http.put<Insumo>(`${this.urlBaseAPI}/insumo/${id}`, request);
   }
   
 }
