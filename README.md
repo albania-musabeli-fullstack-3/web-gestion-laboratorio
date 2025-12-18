@@ -66,6 +66,11 @@ Se utilizó sonarqube para revisión de código estático utizando su versión w
 
 <img width="1920" height="1041" alt="fs3_docker_compose_api_lab" src="https://github.com/user-attachments/assets/7d851b0e-60a9-4a93-8637-26cbb40b4427" />
 
+### API Insumos
+
+<img width="1917" height="1044" alt="FS3_api_insumos_docker" src="https://github.com/user-attachments/assets/c5247920-dacf-4822-ac79-e2e94b0ce3d8" />
+
+
 ### Servidor NGINX Gestión Laboratorio (puerto 80)
 
 <img width="1920" height="1074" alt="fs3_docker_compose_front" src="https://github.com/user-attachments/assets/d55c798b-36eb-4a05-9ee1-710825dabf27" />
