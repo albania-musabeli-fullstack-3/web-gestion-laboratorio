@@ -44,17 +44,24 @@ Se utilizó sonarqube para revisión de código estático utizando su versión w
 
 ## Capturas de pantalla sitio web
 
-<img width="1913" height="969" alt="FS3_gestionlab_crearcuenta" src="https://github.com/user-attachments/assets/fe0daee3-6b8c-44dc-9ef0-e30114b3b472" />
+<img width="1930" height="970" alt="01_iniciar_sesion" src="https://github.com/user-attachments/assets/feab3873-8d07-4341-854e-86d97fdab221" />
+<img width="1914" height="971" alt="02_crear_cuenta" src="https://github.com/user-attachments/assets/3b9b2838-a6a6-4865-892d-560a23306f86" />
+<img width="1914" height="971" alt="03_recuperar_pass" src="https://github.com/user-attachments/assets/4de7baba-975e-45b0-9f18-bd2d4b033c8b" />
+<img width="1914" height="971" alt="04_recuperar_pass" src="https://github.com/user-attachments/assets/ce1ef78e-23f6-49d1-b6b2-86701e1db3e5" />
+<img width="1914" height="971" alt="05_home" src="https://github.com/user-attachments/assets/87b96d6e-7eba-4d95-94b4-f124d42f3589" />
+<img width="1914" height="971" alt="06_listar_lab" src="https://github.com/user-attachments/assets/eab2701e-54c6-4f06-99a1-33ac51e3ea9a" />
+<img width="1914" height="971" alt="07_agregar_lab" src="https://github.com/user-attachments/assets/27b8b247-f641-46ad-9bbd-89abd331acf2" />
+<img width="1914" height="971" alt="08_editar_lab" src="https://github.com/user-attachments/assets/bc1f34d3-36cb-48a3-88e2-0919ea5bc800" />
+<img width="1914" height="971" alt="09_listar_result" src="https://github.com/user-attachments/assets/ce99e68e-da92-4cf5-b65d-bb28af29f8ac" />
+<img width="1914" height="971" alt="10_agregar_result" src="https://github.com/user-attachments/assets/f536d5b2-87b6-402f-84a5-32bd546a064f" />
+<img width="1914" height="971" alt="11_editar_result" src="https://github.com/user-attachments/assets/941d0847-df91-4e5c-9cbd-fb89fc487d8b" />
+<img width="1914" height="971" alt="12_listar_insumo" src="https://github.com/user-attachments/assets/d7349dbd-e8fd-42dc-9ed0-89cf878f2c09" />
+<img width="1914" height="971" alt="13_agregar_insumo" src="https://github.com/user-attachments/assets/e7b230ab-d78f-4f5b-80f4-43332daedb57" />
+<img width="1914" height="971" alt="14_editar_insumo" src="https://github.com/user-attachments/assets/1eb8b1fd-8cb5-450e-9bfb-01ccedbe97be" />
+<img width="1914" height="971" alt="15_perfil_usuario" src="https://github.com/user-attachments/assets/bb08c709-24e9-435e-9c6a-875609d9bd88" />
+<img width="1914" height="971" alt="16_cerrar_sesion" src="https://github.com/user-attachments/assets/5b37b193-e4f4-4309-b927-91c85fda8c4f" />
+<img width="1914" height="971" alt="17_sesion_cerrada" src="https://github.com/user-attachments/assets/a5f4c53b-ddbc-483a-b0f6-11c53e9311fe" />
 
-<img width="1913" height="969" alt="FS3_front_recuppass1" src="https://github.com/user-attachments/assets/24aae5da-1c36-4e30-98f2-10cdc1e54ad5" />
-<img width="1913" height="969" alt="FS3_front_recuppass2" src="https://github.com/user-attachments/assets/549f5943-6398-497a-a64b-4ba31a4ff302" />
-<img width="1913" height="969" alt="FS3_front_gestionlab1" src="https://github.com/user-attachments/assets/7d8f0e98-2c0b-42e4-b944-24a0eb42e5d5" />
-<img width="1913" height="969" alt="FS3_front_gestionlab2" src="https://github.com/user-attachments/assets/64696cf3-6aa6-4491-bea7-a6bacfc13363" />
-<img width="1913" height="969" alt="FS3_front_gestionlab3" src="https://github.com/user-attachments/assets/2597309a-5d10-4b7f-95e1-694c1236170f" />
-<img width="1895" height="962" alt="FS3_front_agregarlab" src="https://github.com/user-attachments/assets/eae04a22-0eea-4bdb-98f4-735114093a5e" />
-<img width="1913" height="969" alt="FS3_front_gestionlab4" src="https://github.com/user-attachments/assets/d660598d-f946-4222-9ded-b19ebc1d9816" />
-<img width="1895" height="962" alt="FS3_front_agregarresult" src="https://github.com/user-attachments/assets/9ce98663-5b61-4ab6-962f-645c159b2c8b" />
-<img width="1913" height="969" alt="FS3_front_gestionlab5" src="https://github.com/user-attachments/assets/1adbeb3f-4946-442a-8322-39c5068f7ec1" />
 
 ## Evidencias de ejecución de microservicios en contenedores Docker
 
